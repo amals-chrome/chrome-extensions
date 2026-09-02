@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><title>RunJS — 隐私政策</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.svg" type="image/svg+xml"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path));
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path));
+      }
+    } catch (e) {}
+  })();
+</script><style>:root{--bg: #0f1117;--panel: #1e2130;--fg: #eef0f6;--cmt: #9aa3b8;--pur: #bd93f9;--cur: rgba(46, 51, 72, .85);--font: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace}*{box-sizing:border-box}body.privacy-page{margin:0;padding:32px 20px 64px;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:14px;line-height:1.7}.privacy-page main{max-width:720px;margin:0 auto;background:var(--panel);border:1px solid var(--cur);border-radius:8px;padding:28px 32px}.privacy-page .back{display:inline-block;margin:0 16px 20px 0;color:var(--pur);font-size:13px}.privacy-page .back-secondary{opacity:.85}.privacy-page h1{color:var(--pur);font-size:22px;margin:0 0 8px}.privacy-page h2{color:var(--pur);font-size:15px;margin:28px 0 10px;letter-spacing:.04em;text-transform:uppercase}.privacy-page p,.privacy-page li{color:var(--fg)}.privacy-page .meta{color:var(--cmt);font-size:12px;margin:0 0 24px}.privacy-page ul{padding-left:1.2em}.privacy-page a{color:var(--pur)}.privacy-page a:hover{opacity:.9}
+</style></head> <body class="privacy-page">   <main> <a class="back" href="/zh/runjs/">← RunJS</a> <a class="back back-secondary" href="/zh/">全部扩展</a> <h1>RunJS — 隐私政策</h1> <p class="meta">更新日期：2026-08-31</p> <p>RunJS 以本地优先：脚本与偏好保存在本机 Chrome 存储中。我们不运营脚本库后端，不会把脚本正文或页面内容上传到我们的服务器，也不含分析或广告追踪。</p> <h2>我们存储的数据</h2> <p>以下内容仅保存在你本机的 Chrome 存储中：</p> <ul> <li>脚本库条目（名称、网址、CSS/JS、运行设置、可选缓存图标）</li> <li>语言、主题与字体偏好</li> <li>Dashboard 编辑中的未保存草稿（session 存储；浏览器会话结束后清除）</li> <li>打开标签页过程中的短期注入任务（session 存储）</li> <li>弹窗角标用的短期注入结果（local 存储）</li> <li>是否已关闭工具栏固定提示（local 存储）</li> </ul> <h2>我们不收集的数据</h2> <ul> <li>不上传你的脚本、网址或页面内容到 RunJS 服务器</li> <li>不含分析 SDK、广告追踪，不出售或分享个人数据</li> <li>不通读浏览历史 — 仅检查与 RunJS 发起运行相关联的标签页 URL（含复用已打开且匹配的标签），以判断何时注入</li> <li>不下载远程脚本 — 只注入你本地保存的代码</li> </ul> <h2>网络使用</h2> <ul> <li>打开或测试目标网址时，由浏览器正常访问该站点（不经过我们代理）</li> <li>列表图标仅在已授权该主机站点访问时从目标站获取：可能读取页面 HTML 以查找 `rel=icon` 链接，再尝试常见根路径 favicon；响应会校验为图片。未授权时使用内置默认图标（不向第三方图标服务请求）</li> </ul> <h2>导入与导出</h2> <ul> <li>导出为明文 JSON 备份文件，由你自行保存 — 请像对待脚本库一样妥善保管；默认不加密</li> <li>导入读取你选择的 JSON 文件并在本地合并；不会发送给我们</li> </ul> <h2>权限</h2> <ul> <li>storage — 在本机保存脚本库、偏好与短期注入状态</li> <li>userScripts — 执行你编写的 CSS/JS（在本扩展详情页开启「允许运行用户脚本」；Chrome 138+）</li> <li>tabs — 打开目标网址并在匹配的标签页注入</li> <li>webNavigation — 检测页面加载、跳转、SPA 导航与 iframe 帧以便注入</li> <li>windows — 验证目标网址时使用隐藏窗口</li> <li>contextMenus — 工具栏图标右键菜单项，用于打开 Dashboard 与 RunJS 公开产品页</li> <li>可选站点访问 — 保存注入代码时或在设置中申请；拒绝仍可本地保存，注入与列表图标获取需已授权；也用于缓存目标页声明的图标（及常见根路径回退）</li> </ul> <h2>你编写的脚本</h2> <p>注入的 CSS/JS 由你提供、本地存储，并在 Chrome 用户脚本环境中执行。你需自行对所选网站上的行为负责。</p> <h2>联系</h2> <p>如有本扩展的隐私相关问题，请发邮件至 amals.chrome@gmail.com，或通过 Chrome 网上应用店 RunJS 商品页的支持 / 联系方式与发布者联系。</p> </main>  </body></html>

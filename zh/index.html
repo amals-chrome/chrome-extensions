@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="独立开发的 Chrome 扩展官方站点 — RunJS 等。注重隐私，无广告、无追踪。"><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><title>Chrome 扩展 · 官方站点</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.svg" type="image/svg+xml"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path));
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path));
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DEeL3NDK.css"></head> <body> <div class="bg-glow" aria-hidden="true"></div> <header class="nav"> <div class="wrap nav-inner"> <a class="brand" href="/zh/"> <span class="brand-mark" aria-hidden="true">Ext</span> <span>Chrome 扩展</span> </a> <nav class="nav-links" aria-label="主导航"> <a class="nav-hide-mobile" href="/zh/runjs/">RunJS</a> <a class="nav-hide-mobile" href="/zh/#extensions">扩展</a> <a class="nav-hide-mobile" href="/zh/#about">关于</a> <a class="lang-switch" href="/" lang="en" data-locale-switch="en" aria-label="语言"> EN </a> <a class="btn btn-primary btn-sm nav-support-btn" href="/zh/#support"> <svg class="btn-heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false"> <defs> <linearGradient id="nav-heart-grad" x1="0%" y1="100%" x2="100%" y2="0%"> <stop offset="0%" stop-color="#ffb86c"></stop> <stop offset="48%" stop-color="#ff79c6"></stop> <stop offset="100%" stop-color="#f8f8f2"></stop> </linearGradient> </defs> <path fill="url(#nav-heart-grad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path> </svg> 支持 </a> </nav> </div> </header> <script>
+  document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      try {
+        localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+      } catch (e) {}
+    });
+  });
+</script>  <main id="top"> <div class="wrap"> <section class="hero"> <div class="hero-badge"> <span class="hero-badge-dot" aria-hidden="true"></span> 官方扩展目录 </div> <h1> 让每个人都能用上的<br><span>Chrome 扩展</span> </h1> <p class="hero-lead">这里是我的 Chrome 扩展主页 — 注重隐私的浏览器工具，帮你省时间，没有广告与追踪。</p> <div class="hero-actions"> <a class="btn btn-primary" href="/zh/#extensions">浏览扩展</a> <a class="btn btn-ghost" href="/zh/#support">支持开发</a> </div> </section> <section id="about"> <p class="section-label">关于</p> <h2 class="section-title">我为什么做扩展</h2> <p class="section-desc">每一款扩展都只解决一个真实的日常麻烦 — 更少点击、更少重复、浏览器里更多掌控。我会持续更新实用功能、跟进 Chrome 变更，并听取反馈。</p> <div class="values-grid"> <article class="value-card"> <div class="value-icon" aria-hidden="true">🔒</div> <h3>隐私优先</h3> <p>数据留在你的设备上。没有分析 SDK，也不会把你的脚本或浏览内容上传到我的服务器。</p> </article> <article class="value-card"> <div class="value-icon" aria-hidden="true">⚡</div> <h3>专注轻量</h3> <p>把一件事做好。没有臃肿功能，也没有套路 — 用完就让开。</p> </article> <article class="value-card"> <div class="value-icon" aria-hidden="true">🛠️</div> <h3>独立开发</h3> <p>无广告、无追踪。支持有助于维护、跟进 Chrome API，以及下一款产品。</p> </article> </div> </section> <section id="extensions"> <p class="section-label">扩展</p> <h2 class="section-title">全部扩展</h2> <p class="section-desc">RunJS 现已上线。后续插件发布后也会列在这里。</p> <div class="ext-grid"> <article class="ext-card" id="runjs"> <img class="ext-icon" src="/assets/runjs-icon128.png" width="72" height="72" alt="RunJS 图标"> <div class="ext-meta"> <h3> <a class="ext-title-link" href="/zh/runjs/">RunJS</a> </h3> <p class="ext-tagline">把 CSS/JS 绑定到任意网址 — 页面加载后再注入。代码留空则只打开网址。</p> <ul class="ext-features"> <li>CSS 与 JavaScript</li> <li>本地脚本库</li> <li>Chrome 135+</li> <li>无广告 · 无追踪</li> </ul> </div> <div class="ext-actions"> <a class="btn btn-primary btn-sm" href="/zh/runjs/">查看详情</a> <a class="btn btn-ghost btn-sm" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> Chrome 网上应用店 </a> </div> </article> <div class="ext-coming"> <span aria-hidden="true">🚧</span> <span>更多扩展即将推出 — 你的支持有助于下一款产品。</span> </div> </div> </section> <section id="support"> <div class="support-box"> <div class="support-intro"> <p class="section-label">支持</p> <h2>支持开发</h2> <p class="support-lead">RunJS 与这里的扩展，都是为了帮你在浏览器里省时间 — 没有广告、账号或追踪。如果它们成为你日常工具的一部分，自愿支持能帮助我在 Chrome 不断演进时持续维护。</p> <ul class="support-points"> <li>在 Chrome 更新 API 时修复问题并保持兼容</li> <li>改进现有功能 — 本地优先、尊重隐私</li> <li>资助下一款扩展的设计与开发</li> </ul> <p class="support-note">支持完全自愿。你的脚本与数据只会留在本机。</p> </div> <div class="donate-card"> <div class="donate-card-head"> <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"> <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path> </svg> <span>随意打赏</span> </div> <div class="donate-card-body"> <a class="donate-paypal" href="https://paypal.me/amalschrome" id="paypal-link" rel="noopener noreferrer" target="_blank"> <span class="donate-paypal-badge" aria-hidden="true"> <img class="donate-paypal-badge-img" src="/assets/donate/paypal.png" width="32" height="32" alt="" decoding="async"> </span> <span class="donate-paypal-text"> <span class="donate-paypal-label">PayPal</span> <span class="donate-paypal-sub">paypal.me/amalschrome</span> </span> <svg class="donate-paypal-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"> <path d="M9 18l6-6-6-6"></path> </svg> </a> <a class="donate-paypal donate-kofi" href="https://ko-fi.com/amalschrome" id="kofi-link" rel="noopener noreferrer" target="_blank"> <span class="donate-paypal-badge donate-kofi-badge" aria-hidden="true"> <img class="donate-paypal-badge-img donate-paypal-badge-img-contain" src="/assets/donate/kofi.png" width="32" height="32" alt="" decoding="async"> </span> <span class="donate-paypal-text"> <span class="donate-paypal-label">Ko-fi</span> <span class="donate-paypal-sub">ko-fi.com/amalschrome</span> </span> <svg class="donate-paypal-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"> <path d="M9 18l6-6-6-6"></path> </svg> </a> <div class="donate-qr-grid"> <div class="donate-qr-item donate-qr-item-wechat"> <span class="donate-qr-label">微信支付</span> <div class="donate-qr-frame"> <img class="donate-qr-img" src="/assets/donate/wechat.jpg" width="120" height="120" alt="微信支付二维码"> </div> </div> <div class="donate-qr-item donate-qr-item-alipay"> <span class="donate-qr-label">支付宝</span> <div class="donate-qr-frame"> <img class="donate-qr-img" src="/assets/donate/alipay.jpg" width="120" height="120" alt="支付宝二维码"> </div> </div> </div> </div> </div> </div> </section> </div> </main>  <footer> <div class="wrap footer-inner"> <span>© 2026 · Chrome 扩展</span> <div class="footer-links"> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/#support">支持</a> </div> </div> </footer> </body></html>

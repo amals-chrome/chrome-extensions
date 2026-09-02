@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Official site for indie Chrome extensions — RunJS and more. Privacy-friendly browser tools with no ads or tracking."><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><title>Chrome Extensions · Official Site</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.svg" type="image/svg+xml"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path));
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path));
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DEeL3NDK.css"></head> <body> <div class="bg-glow" aria-hidden="true"></div> <header class="nav"> <div class="wrap nav-inner"> <a class="brand" href="/"> <span class="brand-mark" aria-hidden="true">Ext</span> <span>Chrome Extensions</span> </a> <nav class="nav-links" aria-label="Primary"> <a class="nav-hide-mobile" href="/runjs/">RunJS</a> <a class="nav-hide-mobile" href="/#extensions">Extensions</a> <a class="nav-hide-mobile" href="/#about">About</a> <a class="lang-switch" href="/zh/" lang="zh-CN" data-locale-switch="zh" aria-label="Language"> 中文 </a> <a class="btn btn-primary btn-sm nav-support-btn" href="/#support"> <svg class="btn-heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false"> <defs> <linearGradient id="nav-heart-grad" x1="0%" y1="100%" x2="100%" y2="0%"> <stop offset="0%" stop-color="#ffb86c"></stop> <stop offset="48%" stop-color="#ff79c6"></stop> <stop offset="100%" stop-color="#f8f8f2"></stop> </linearGradient> </defs> <path fill="url(#nav-heart-grad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path> </svg> Support </a> </nav> </div> </header> <script>
+  document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      try {
+        localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+      } catch (e) {}
+    });
+  });
+</script>  <main id="top"> <div class="wrap"> <section class="hero"> <div class="hero-badge"> <span class="hero-badge-dot" aria-hidden="true"></span> Official extension catalog </div> <h1> Chrome extensions that<br><span>help everyone</span> </h1> <p class="hero-lead">This is the home for my Chrome extensions — privacy-friendly browser tools built to save time without ads or tracking.</p> <div class="hero-actions"> <a class="btn btn-primary" href="/#extensions">Browse extensions</a> <a class="btn btn-ghost" href="/#support">Support development</a> </div> </section> <section id="about"> <p class="section-label">About</p> <h2 class="section-title">Why I build extensions</h2> <p class="section-desc">Each extension solves one real daily annoyance — fewer clicks, less repetition, more control in the browser. I ship useful features, keep up with Chrome updates, and listen to feedback.</p> <div class="values-grid"> <article class="value-card"> <div class="value-icon" aria-hidden="true">🔒</div> <h3>Privacy-first</h3> <p>Your data stays on your device. No analytics SDKs, no uploads of your scripts or browsing to my servers.</p> </article> <article class="value-card"> <div class="value-icon" aria-hidden="true">⚡</div> <h3>Focused &amp; lightweight</h3> <p>One job done well. No bloat, no dark patterns — tools that get out of your way.</p> </article> <article class="value-card"> <div class="value-icon" aria-hidden="true">🛠️</div> <h3>Independent development</h3> <p>No ads or tracking. Support helps maintenance, Chrome API updates, and what we build next.</p> </article> </div> </section> <section id="extensions"> <p class="section-label">Extensions</p> <h2 class="section-title">All extensions</h2> <p class="section-desc">RunJS is live now. New plugins will be listed here as they ship.</p> <div class="ext-grid"> <article class="ext-card" id="runjs"> <img class="ext-icon" src="/assets/runjs-icon128.png" width="72" height="72" alt="RunJS icon"> <div class="ext-meta"> <h3> <a class="ext-title-link" href="/runjs/">RunJS</a> </h3> <p class="ext-tagline">Bind CSS/JS to any URL — inject after the page loads. Leave code empty to open the URL only.</p> <ul class="ext-features"> <li>CSS &amp; JavaScript</li> <li>Local library</li> <li>Chrome 135+</li> <li>No ads · No tracking</li> </ul> </div> <div class="ext-actions"> <a class="btn btn-primary btn-sm" href="/runjs/">View details</a> <a class="btn btn-ghost btn-sm" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> Chrome Web Store </a> </div> </article> <div class="ext-coming"> <span aria-hidden="true">🚧</span> <span>More extensions coming soon — your support helps build the next release.</span> </div> </div> </section> <section id="support"> <div class="support-box"> <div class="support-intro"> <p class="section-label">Support</p> <h2>Support development</h2> <p class="support-lead">RunJS and the extensions here are built to save time in the browser — without ads, accounts, or tracking. If they earn a place in your daily workflow, voluntary support helps me maintain them as Chrome evolves.</p> <ul class="support-points"> <li>Fix bugs and keep compatibility when Chrome updates APIs</li> <li>Improve existing features — local-first, privacy-respecting</li> <li>Fund design and development of the next extension</li> </ul> <p class="support-note">Support is optional. Your scripts and data stay on your device only.</p> </div> <div class="donate-card"> <div class="donate-card-head"> <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"> <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path> </svg> <span>Send a tip</span> </div> <div class="donate-card-body"> <a class="donate-paypal" href="https://paypal.me/amalschrome" id="paypal-link" rel="noopener noreferrer" target="_blank"> <span class="donate-paypal-badge" aria-hidden="true"> <img class="donate-paypal-badge-img" src="/assets/donate/paypal.png" width="32" height="32" alt="" decoding="async"> </span> <span class="donate-paypal-text"> <span class="donate-paypal-label">PayPal</span> <span class="donate-paypal-sub">paypal.me/amalschrome</span> </span> <svg class="donate-paypal-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"> <path d="M9 18l6-6-6-6"></path> </svg> </a> <a class="donate-paypal donate-kofi" href="https://ko-fi.com/amalschrome" id="kofi-link" rel="noopener noreferrer" target="_blank"> <span class="donate-paypal-badge donate-kofi-badge" aria-hidden="true"> <img class="donate-paypal-badge-img donate-paypal-badge-img-contain" src="/assets/donate/kofi.png" width="32" height="32" alt="" decoding="async"> </span> <span class="donate-paypal-text"> <span class="donate-paypal-label">Ko-fi</span> <span class="donate-paypal-sub">ko-fi.com/amalschrome</span> </span> <svg class="donate-paypal-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"> <path d="M9 18l6-6-6-6"></path> </svg> </a> <div class="donate-qr-grid"> <div class="donate-qr-item donate-qr-item-wechat"> <span class="donate-qr-label">WeChat Pay</span> <div class="donate-qr-frame"> <img class="donate-qr-img" src="/assets/donate/wechat.jpg" width="120" height="120" alt="WeChat Pay QR code"> </div> </div> <div class="donate-qr-item donate-qr-item-alipay"> <span class="donate-qr-label">Alipay</span> <div class="donate-qr-frame"> <img class="donate-qr-img" src="/assets/donate/alipay.jpg" width="120" height="120" alt="Alipay QR code"> </div> </div> </div> </div> </div> </div> </section> </div> </main>  <footer> <div class="wrap footer-inner"> <span>© 2026 · Chrome Extensions</span> <div class="footer-links"> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> <a href="/runjs/privacy/">Privacy</a> <a href="/#support">Support</a> </div> </div> </footer> </body></html>

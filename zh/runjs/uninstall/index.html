@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="感谢使用 RunJS。脚本仅存本机；若注入未生效，可先核对 Chrome 版本与用户脚本权限。"><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><title>RunJS · 已卸载</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.svg" type="image/svg+xml"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path));
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path));
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DEeL3NDK.css"></head> <body> <div class="bg-glow" aria-hidden="true"></div> <header class="nav"> <div class="wrap nav-inner"> <a class="brand" href="/zh/"> <span class="brand-mark" aria-hidden="true">Ext</span> <span>Chrome 扩展</span> </a> <nav class="nav-links" aria-label="主导航"> <a class="nav-hide-mobile" href="/zh/runjs/">RunJS</a> <a class="nav-hide-mobile" href="/zh/#extensions">扩展</a> <a class="nav-hide-mobile" href="/zh/#about">关于</a> <a class="lang-switch" href="/runjs/uninstall/" lang="en" data-locale-switch="en" aria-label="语言"> EN </a> <a class="btn btn-primary btn-sm nav-support-btn" href="/zh/#support"> <svg class="btn-heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false"> <defs> <linearGradient id="nav-heart-grad" x1="0%" y1="100%" x2="100%" y2="0%"> <stop offset="0%" stop-color="#ffb86c"></stop> <stop offset="48%" stop-color="#ff79c6"></stop> <stop offset="100%" stop-color="#f8f8f2"></stop> </linearGradient> </defs> <path fill="url(#nav-heart-grad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path> </svg> 支持 </a> </nav> </div> </header> <script>
+  document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      try {
+        localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+      } catch (e) {}
+    });
+  });
+</script>  <main id="top" class="uninstall-page"> <div class="wrap"> <section class="hero product-hero uninstall-hero"> <div class="product-hero-copy uninstall-hero-copy"> <div class="product-hero-brand"> <img class="product-hero-icon" src="/assets/runjs-icon128.png" width="88" height="88" alt="RunJS 图标"> <div> <p class="section-label">RunJS</p> <h1>感谢使用 RunJS</h1> </div> </div> <p class="hero-lead product-lead">扩展已从本机移除。你的脚本库只存在 Chrome 本地存储里，我们这边没有账号或云端库需要清理。</p> <div class="hero-actions"> <a class="btn btn-primary btn-lg" href="mailto:amals.chrome@gmail.com?subject=RunJS%20%E5%8D%B8%E8%BD%BD%E5%8F%8D%E9%A6%88">发送反馈邮件</a> <a class="btn btn-ghost btn-lg" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> 重新安装（Chrome 网上应用店） </a> </div> </div> </section> <section class="product-section"> <h2 class="section-title">若当初注入不成功，常见原因</h2> <ul class="product-list"> <li>需要 Chrome 135 或更新版本。</li> <li>Chrome 138+ 请在扩展详情页开启「允许运行用户脚本」。</li> <li>含注入代码的条目需要该站点的访问权限；仅打开网址则不必授权。</li> </ul> </section> <section class="product-section"> <h2 class="section-title">想告诉我们原因？</h2> <p class="section-desc">邮件说明即可（可选）。有助于后续改进。</p> <p class="section-desc uninstall-email"> <a href="mailto:amals.chrome@gmail.com?subject=RunJS%20%E5%8D%B8%E8%BD%BD%E5%8F%8D%E9%A6%88">amals.chrome@gmail.com</a> </p> <div class="hero-actions"> <a class="btn btn-ghost" href="/zh/runjs/">RunJS 产品页</a> <a class="btn btn-ghost" href="/zh/">全部扩展</a> </div> </section> </div> </main>  <footer> <div class="wrap footer-inner"> <span>© 2026 · Chrome 扩展</span> <div class="footer-links"> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/#support">支持</a> </div> </div> </footer> </body></html>

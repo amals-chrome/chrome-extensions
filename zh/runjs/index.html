@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="RunJS 将 CSS 与 JavaScript 绑定到你指定的网址，并在页面加载后注入 — 本地优先，无广告、无追踪。"><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><title>RunJS · Chrome 扩展</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.svg" type="image/svg+xml"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path));
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path));
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DEeL3NDK.css"></head> <body> <div class="bg-glow" aria-hidden="true"></div> <header class="nav"> <div class="wrap nav-inner"> <a class="brand" href="/zh/"> <span class="brand-mark" aria-hidden="true">Ext</span> <span>Chrome 扩展</span> </a> <nav class="nav-links" aria-label="主导航"> <a class="nav-hide-mobile" href="/zh/runjs/">RunJS</a> <a class="nav-hide-mobile" href="/zh/#extensions">扩展</a> <a class="nav-hide-mobile" href="/zh/#about">关于</a> <a class="lang-switch" href="/runjs/" lang="en" data-locale-switch="en" aria-label="语言"> EN </a> <a class="btn btn-primary btn-sm nav-support-btn" href="/zh/#support"> <svg class="btn-heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false"> <defs> <linearGradient id="nav-heart-grad" x1="0%" y1="100%" x2="100%" y2="0%"> <stop offset="0%" stop-color="#ffb86c"></stop> <stop offset="48%" stop-color="#ff79c6"></stop> <stop offset="100%" stop-color="#f8f8f2"></stop> </linearGradient> </defs> <path fill="url(#nav-heart-grad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path> </svg> 支持 </a> </nav> </div> </header> <script>
+  document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      try {
+        localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+      } catch (e) {}
+    });
+  });
+</script>  <main id="top"> <div class="wrap"> <section class="hero product-hero"> <div class="product-hero-grid"> <div class="product-hero-copy"> <div class="product-hero-brand"> <img class="product-hero-icon" src="/assets/runjs-icon128.png" width="88" height="88" alt="RunJS 图标"> <div> <p class="section-label">扩展</p> <h1>RunJS</h1> </div> </div> <p class="hero-lead product-lead">把 CSS 与 JavaScript 绑定到任意网址。从弹窗或 Dashboard 打开，页面到达后再注入。代码留空则只打开网址 — 无需站点访问权限。</p> <div class="hero-actions"> <a class="btn btn-primary btn-lg btn-with-icon" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" role="img"> <title>Chrome</title> <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Chrome 网上应用店 </a> <a class="btn btn-ghost btn-lg" href="/zh/runjs/privacy/"> 隐私政策 </a> <a class="btn btn-ghost btn-lg" href="/zh/">全部扩展</a> </div> </div> <div class="product-hero-visual"> <img class="product-hero-shot" src="/assets/runjs-hero-mockup.jpg" width="960" height="540" alt="RunJS Dashboard 与弹窗界面示意" loading="eager" decoding="async"> </div> </div> </section> <section class="product-section"> <p class="section-label">为什么选 RunJS</p> <h2 class="section-title">为你天天用的网站准备一键工作流</h2> <p class="section-desc">在 Dashboard 保存名称、目标网址与可选的 CSS/JS。全部留在本机 — 没有云端脚本库，没有广告，没有追踪。</p> <div class="product-grid"> <article class="product-card"> <h3>打开并注入</h3> <p>点击已保存条目即可打开网址并在加载后注入。CSS/JS 为空则仅打开。</p> </article> <article class="product-card"> <h3>本地脚本库</h3> <p>脚本、偏好与草稿保存在本机 Chrome 存储中。</p> </article> <article class="product-card"> <h3>适配真实页面</h3> <p>跟随跳转，支持 SPA 与 iframe，注入时机可配置。</p> </article> </div> </section> <section class="product-section"> <p class="section-label">功能</p> <h2 class="section-title">你能做什么</h2> <ul class="product-list"> <li>Dashboard — 脚本库含常规 / CSS / JS / 设置，CodeMirror 编辑器、格式化、网址测试与草稿恢复。</li> <li>弹窗 — 搜索与筛选；点击打开并注入，或在代码为空时仅打开。</li> <li>注入 — 主机 + 路径前缀匹配；隔离环境或页面主环境；开始 / DOM 就绪 / 加载完成 / 空闲 / 延迟；刷新后可保持。</li> <li>脚本库工具 — 导入/导出 JSON、批量删除、拖拽排序、导入冲突处理。</li> </ul> </section> <section class="product-section"> <p class="section-label">运行要求</p> <h2 class="section-title">Chrome 135+</h2> <p class="section-desc"> 在 Chrome 138+ 上注入已保存脚本时，请打开  <code class="inline-code">chrome://extensions</code>  → RunJS 详情 → 开启「允许运行用户脚本」。仅在你保存了注入代码的来源站点上才会申请站点访问权限。 </p> </section> <section class="product-section product-cta"> <h2 class="section-title">开始使用</h2> <p class="section-desc">从 Chrome 网上应用店安装 RunJS，或先阅读隐私政策。</p> <div class="hero-actions"> <a class="btn btn-primary btn-with-icon" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" role="img"> <title>Chrome</title> <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Chrome 网上应用店 </a> <a class="btn btn-ghost" href="/zh/runjs/privacy/">隐私政策</a> <a class="btn btn-ghost" href="/zh/#support">支持开发</a> </div> </section> </div> </main>  <footer> <div class="wrap footer-inner"> <span>© 2026 · Chrome 扩展</span> <div class="footer-links"> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/#support">支持</a> </div> </div> </footer> </body></html>

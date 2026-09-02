@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="This page does not exist on the Chrome Extensions site."><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><title>Page not found · Chrome Extensions</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.svg" type="image/svg+xml"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path));
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path));
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DEeL3NDK.css"></head> <body> <div class="bg-glow" aria-hidden="true"></div> <header class="nav"> <div class="wrap nav-inner"> <a class="brand" href="/"> <span class="brand-mark" aria-hidden="true">Ext</span> <span>Chrome Extensions</span> </a> <nav class="nav-links" aria-label="Primary"> <a class="nav-hide-mobile" href="/runjs/">RunJS</a> <a class="nav-hide-mobile" href="/#extensions">Extensions</a> <a class="nav-hide-mobile" href="/#about">About</a> <a class="lang-switch" href="/zh/404/" lang="zh-CN" data-locale-switch="zh" aria-label="Language"> 中文 </a> <a class="btn btn-primary btn-sm nav-support-btn" href="/#support"> <svg class="btn-heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false"> <defs> <linearGradient id="nav-heart-grad" x1="0%" y1="100%" x2="100%" y2="0%"> <stop offset="0%" stop-color="#ffb86c"></stop> <stop offset="48%" stop-color="#ff79c6"></stop> <stop offset="100%" stop-color="#f8f8f2"></stop> </linearGradient> </defs> <path fill="url(#nav-heart-grad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path> </svg> Support </a> </nav> </div> </header> <script>
+  document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      try {
+        localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+      } catch (e) {}
+    });
+  });
+</script>  <main class="not-found" id="top"> <div class="wrap not-found-inner"> <section class="not-found-hero" aria-labelledby="not-found-title"> <p class="not-found-code" aria-hidden="true">404</p> <h1 id="not-found-title">Page not found</h1> <p class="not-found-lead">This URL isn’t on the site. Check the address or go back to the home page.</p> <div class="hero-actions"> <a class="btn btn-primary btn-lg" href="/">Back to home</a> </div> </section> </div> </main>  <footer> <div class="wrap footer-inner"> <span>© 2026 · Chrome Extensions</span> <div class="footer-links"> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> <a href="/runjs/privacy/">Privacy</a> <a href="/#support">Support</a> </div> </div> </footer> </body></html>
