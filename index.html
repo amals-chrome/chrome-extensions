@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Official site for indie Chrome extensions — RunJS and more. Privacy-friendly browser tools with no ads or tracking."><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><link rel="canonical" href="https://amals-chrome.com/"><meta property="og:type" content="website"><meta property="og:site_name" content="Chrome Extensions"><meta property="og:title" content="Chrome Extensions · Official Site"><meta property="og:description" content="Official site for indie Chrome extensions — RunJS and more. Privacy-friendly browser tools with no ads or tracking."><meta property="og:url" content="https://amals-chrome.com/"><meta property="og:image" content="https://amals-chrome.com/assets/og-default.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Chrome Extensions · Official Site"><meta name="twitter:description" content="Official site for indie Chrome extensions — RunJS and more. Privacy-friendly browser tools with no ads or tracking."><meta name="twitter:image" content="https://amals-chrome.com/assets/og-default.jpg"><title>Chrome Extensions · Official Site</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.svg" type="image/svg+xml"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var suffix = (location.search || "") + (location.hash || "");
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path) + suffix);
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path) + suffix);
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/uninstall.C4kLvBeq.css"></head> <body> <div class="bg-glow" aria-hidden="true"></div> <header class="nav"> <div class="wrap nav-inner"> <a class="brand" href="/" aria-label="Chrome Extensions home"> <span class="brand-mark" aria-hidden="true">Ext</span> </a> <nav class="nav-links" aria-label="Primary"> <a class="nav-link" href="/">Home</a> <div class="nav-dropdown"> <a class="nav-link nav-dropdown-trigger" href="/#extensions" aria-haspopup="true"> <span>Extensions</span> <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true" focusable="false"> <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <div class="nav-dropdown-menu" role="menu"> <a class="nav-dropdown-item" role="menuitem" href="/runjs/">RunJS</a> </div> </div>  <span class="nav-sep" aria-hidden="true"></span> <a class="nav-link nav-lang" href="/zh/" lang="zh-CN" data-locale-switch="zh" aria-label="Language"> 中文 </a> </nav> </div> </header> <script>
+  document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      try {
+        localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+      } catch (err) {}
+      var hash = location.hash || "";
+      if (!hash) return;
+      e.preventDefault();
+      var href = el.getAttribute("href") || "";
+      location.href = href.split("#")[0] + hash;
+    });
+  });
+</script>  <main id="top"> <section class="hero home-hero"> <div class="home-hero-bg" aria-hidden="true"> <span class="home-hero-orb home-hero-orb-a"></span> <span class="home-hero-orb home-hero-orb-b"></span> <span class="home-hero-orb home-hero-orb-c"></span> </div> <div class="wrap hero-inner"> <h1 class="hero-brand" aria-label="Chrome Extensions"> <span class="hero-letter" style="--i: 0"> C </span><span class="hero-letter" style="--i: 1"> h </span><span class="hero-letter" style="--i: 2"> r </span><span class="hero-letter" style="--i: 3"> o </span><span class="hero-letter" style="--i: 4"> m </span><span class="hero-letter" style="--i: 5"> e </span><span class="hero-letter" style="--i: 6">   </span><span class="hero-letter" style="--i: 7"> E </span><span class="hero-letter" style="--i: 8"> x </span><span class="hero-letter" style="--i: 9"> t </span><span class="hero-letter" style="--i: 10"> e </span><span class="hero-letter" style="--i: 11"> n </span><span class="hero-letter" style="--i: 12"> s </span><span class="hero-letter" style="--i: 13"> i </span><span class="hero-letter" style="--i: 14"> o </span><span class="hero-letter" style="--i: 15"> n </span><span class="hero-letter" style="--i: 16"> s </span> </h1> </div> <div class="hero-actions"> <a class="btn btn-primary" href="/#extensions"> <span class="scroll-icon" aria-hidden="true"> <span class="scroll-icon-frame"> <span class="scroll-icon-dot"></span> </span> </span> <span>Browse extensions</span> </a> <a class="amals-blog-btn" href="https://amals.cn" rel="noopener noreferrer" target="_blank"> <img class="amals-blog-avatar" src="/assets/amals-avatar.jpg" width="22" height="22" alt=""> <span>Amals Blog</span> <span class="amals-blog-arrow" aria-hidden="true">↗</span> </a>  </div> </section> <div class="wrap"> <section id="extensions"> <p class="section-label">Extensions</p> <h2 class="section-title">All extensions</h2> <p class="section-desc">RunJS is live now. New plugins will be listed here as they ship.</p> <div class="ext-grid"> <article class="ext-card" id="runjs"> <img class="ext-icon" src="/assets/runjs-icon128.png" width="72" height="72" alt="RunJS icon"> <div class="ext-meta"> <h3> <a class="ext-title-link" href="/runjs/">RunJS</a> </h3> <p class="ext-tagline">Bind CSS/JS to any URL — inject after the page loads. Leave code empty to open the URL only.</p> <ul class="ext-features"> <li>CSS &amp; JavaScript</li> <li>Local library</li> <li>Chrome 135+</li> <li>No ads · No tracking</li> </ul> </div> <div class="ext-actions"> <a class="btn btn-primary btn-sm btn-with-icon" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" role="img"> <title>Chrome</title> <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Install </a> <a class="btn btn-ghost btn-sm" href="/runjs/">View details</a> </div> </article> <div class="ext-coming"> <span class="ext-coming-mark" aria-hidden="true"></span> <div class="ext-coming-copy"> <p class="ext-coming-label">Coming soon</p> <p class="ext-coming-text">More extensions are on the way — your support helps build the next release.</p> </div> </div> </div> </section> <section id="about"> <p class="section-label">About</p> <h2 class="section-title">Why I build extensions</h2> <p class="section-desc">Each extension solves one real daily annoyance — fewer clicks, less repetition, more control in the browser. I ship useful features, keep up with Chrome updates, and listen to feedback.</p> <div class="values-grid"> <article class="value-card"> <div class="value-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"> <path d="M12 3 5 6v5c0 4.5 2.9 7.8 7 9 4.1-1.2 7-4.5 7-9V6l-7-3z"></path> <path d="M9.5 12.2 11.2 14l3.5-3.8"></path> </svg> </div> <h3>Privacy-first</h3> <p>Your data stays on your device. No analytics SDKs, no uploads of your scripts or browsing to my servers.</p> </article> <article class="value-card"> <div class="value-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"> <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path> </svg> </div> <h3>Focused &amp; lightweight</h3> <p>One job done well. No bloat, no dark patterns — tools that get out of your way.</p> </article> <article class="value-card"> <div class="value-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"> <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l2.1-2.1a5.2 5.2 0 0 1-7.4 7.4L7.6 19.4a2.1 2.1 0 0 1-3-3l4.8-4.8a5.2 5.2 0 0 1 7.4-7.4l-2.1 2.1z"></path> </svg> </div> <h3>Independent development</h3> <p>No ads or tracking. Support helps maintenance, Chrome API updates, and what we build next.</p> </article> </div> </section>  </div> </main>  <footer> <div class="wrap footer-inner"> <span>© 2026 · Chrome Extensions</span> <div class="footer-links"> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> <a href="/runjs/privacy/">Privacy</a> <a href="/runjs/terms/">Terms</a>  </div> </div> </footer> </body></html>

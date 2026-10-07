@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Thanks for trying RunJS. Scripts stay on this device by default, with optional Google Drive sync. If injection failed, check Chrome version and Allow User Scripts."><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><link rel="canonical" href="https://amals-chrome.com/runjs/uninstall/"><meta property="og:type" content="website"><meta property="og:site_name" content="Chrome Extensions"><meta property="og:title" content="RunJS · Uninstalled"><meta property="og:description" content="Thanks for trying RunJS. Scripts stay on this device by default, with optional Google Drive sync. If injection failed, check Chrome version and Allow User Scripts."><meta property="og:url" content="https://amals-chrome.com/runjs/uninstall/"><meta property="og:image" content="https://amals-chrome.com/assets/og-runjs.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RunJS · Uninstalled"><meta name="twitter:description" content="Thanks for trying RunJS. Scripts stay on this device by default, with optional Google Drive sync. If injection failed, check Chrome version and Allow User Scripts."><meta name="twitter:image" content="https://amals-chrome.com/assets/og-runjs.jpg"><title>RunJS · Uninstalled</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.svg" type="image/svg+xml"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var suffix = (location.search || "") + (location.hash || "");
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path) + suffix);
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path) + suffix);
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/uninstall.C4kLvBeq.css"></head> <body> <div class="bg-glow" aria-hidden="true"></div> <header class="nav"> <div class="wrap nav-inner"> <a class="brand" href="/" aria-label="Chrome Extensions home"> <span class="brand-mark" aria-hidden="true">Ext</span> </a> <nav class="nav-links" aria-label="Primary"> <a class="nav-link" href="/">Home</a> <div class="nav-dropdown"> <a class="nav-link nav-dropdown-trigger" href="/#extensions" aria-haspopup="true"> <span>Extensions</span> <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true" focusable="false"> <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <div class="nav-dropdown-menu" role="menu"> <a class="nav-dropdown-item" role="menuitem" href="/runjs/">RunJS</a> </div> </div>  <span class="nav-sep" aria-hidden="true"></span> <a class="nav-link nav-lang" href="/zh/runjs/uninstall/" lang="zh-CN" data-locale-switch="zh" aria-label="Language"> 中文 </a> </nav> </div> </header> <script>
+  document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      try {
+        localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+      } catch (err) {}
+      var hash = location.hash || "";
+      if (!hash) return;
+      e.preventDefault();
+      var href = el.getAttribute("href") || "";
+      location.href = href.split("#")[0] + hash;
+    });
+  });
+</script>  <main id="top" class="uninstall-page"> <div class="wrap"> <section class="hero product-hero uninstall-hero"> <div class="product-hero-copy uninstall-hero-copy"> <div class="product-hero-brand"> <img class="product-hero-icon" src="/assets/runjs-icon128.png" width="88" height="88" alt="RunJS icon"> <div> <p class="section-label">RunJS</p> <h1><span>Thanks for trying RunJS</span></h1> </div> </div> <p class="hero-lead product-lead">The extension is removed from this browser. Your library lives on this device by default; if you enabled Google Drive sync, a copy stays in your Drive app data — not on our servers.</p> <div class="hero-actions uninstall-actions"> <a class="btn btn-primary product-action-btn btn-with-icon" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" role="img"> <title>Chrome</title> <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Reinstall </a> <a class="btn btn-ghost product-action-btn" href="mailto:amals.chrome@gmail.com?subject=RunJS%20uninstall%20feedback&#38;body=(optional)%20Why%20I%20uninstalled%3A%0A%0AWhat%20could%20be%20better%3A%0A%0AChrome%20version%3A%0A"> Email feedback </a> </div> </div> </section> <section class="product-section"> <p class="section-label">Your data</p> <h2 class="section-title">Local-first, optional Drive</h2> <p class="section-desc">After uninstall, the local library in this browser is cleared with the extension. If you turned on Google Drive sync in Settings, that copy remains in your own Google account; we have no separate account system and cannot delete your Drive data for you. Reinstall anytime if you want to sync it back.</p> </section> <section class="product-section"> <p class="section-label">Troubleshooting</p> <h2 class="section-title">If injection never worked, common causes</h2> <ul class="product-list"> <li>Chrome 135 or newer is required.</li> <li>On Chrome 138+, enable “Allow User Scripts” on the extension details page.</li> <li>Entries with inject code need site access; open-URL-only entries do not.</li> </ul> </section> <section class="product-section uninstall-footer-nav"> <p class="section-desc uninstall-feedback-note"> Want to tell us why? A short email is enough (optional) —  <a href="mailto:amals.chrome@gmail.com?subject=RunJS%20uninstall%20feedback&#38;body=(optional)%20Why%20I%20uninstalled%3A%0A%0AWhat%20could%20be%20better%3A%0A%0AChrome%20version%3A%0A">amals.chrome@gmail.com</a> </p> <div class="uninstall-text-links"> <a href="/runjs/">RunJS product page</a> <span aria-hidden="true">·</span> <a href="/">All extensions</a> </div> </section> </div> </main>  <footer> <div class="wrap footer-inner"> <span>© 2026 · Chrome Extensions</span> <div class="footer-links"> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> <a href="/runjs/privacy/">Privacy</a> <a href="/runjs/terms/">Terms</a>  </div> </div> </footer> </body></html>

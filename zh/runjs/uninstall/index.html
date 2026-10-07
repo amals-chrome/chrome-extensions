@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="感谢使用 RunJS。脚本默认保存在本机，也可选同步到你的 Google Drive；若注入未生效，可先核对 Chrome 版本与用户脚本权限。"><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><link rel="canonical" href="https://amals-chrome.com/zh/runjs/uninstall/"><meta property="og:type" content="website"><meta property="og:site_name" content="Chrome 扩展"><meta property="og:title" content="RunJS · 已卸载"><meta property="og:description" content="感谢使用 RunJS。脚本默认保存在本机，也可选同步到你的 Google Drive；若注入未生效，可先核对 Chrome 版本与用户脚本权限。"><meta property="og:url" content="https://amals-chrome.com/zh/runjs/uninstall/"><meta property="og:image" content="https://amals-chrome.com/assets/og-runjs.jpg"><meta property="og:locale" content="zh_CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RunJS · 已卸载"><meta name="twitter:description" content="感谢使用 RunJS。脚本默认保存在本机，也可选同步到你的 Google Drive；若注入未生效，可先核对 Chrome 版本与用户脚本权限。"><meta name="twitter:image" content="https://amals-chrome.com/assets/og-runjs.jpg"><title>RunJS · 已卸载</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.svg" type="image/svg+xml"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var suffix = (location.search || "") + (location.hash || "");
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path) + suffix);
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path) + suffix);
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/uninstall.C4kLvBeq.css"></head> <body> <div class="bg-glow" aria-hidden="true"></div> <header class="nav"> <div class="wrap nav-inner"> <a class="brand" href="/zh/" aria-label="Chrome 扩展首页"> <span class="brand-mark" aria-hidden="true">Ext</span> </a> <nav class="nav-links" aria-label="主导航"> <a class="nav-link" href="/zh/">Home</a> <div class="nav-dropdown"> <a class="nav-link nav-dropdown-trigger" href="/zh/#extensions" aria-haspopup="true"> <span>扩展</span> <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true" focusable="false"> <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <div class="nav-dropdown-menu" role="menu"> <a class="nav-dropdown-item" role="menuitem" href="/zh/runjs/">RunJS</a> </div> </div>  <span class="nav-sep" aria-hidden="true"></span> <a class="nav-link nav-lang" href="/runjs/uninstall/" lang="en" data-locale-switch="en" aria-label="语言"> EN </a> </nav> </div> </header> <script>
+  document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      try {
+        localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+      } catch (err) {}
+      var hash = location.hash || "";
+      if (!hash) return;
+      e.preventDefault();
+      var href = el.getAttribute("href") || "";
+      location.href = href.split("#")[0] + hash;
+    });
+  });
+</script>  <main id="top" class="uninstall-page"> <div class="wrap"> <section class="hero product-hero uninstall-hero"> <div class="product-hero-copy uninstall-hero-copy"> <div class="product-hero-brand"> <img class="product-hero-icon" src="/assets/runjs-icon128.png" width="88" height="88" alt="RunJS 图标"> <div> <p class="section-label">RunJS</p> <h1><span>感谢使用 RunJS</span></h1> </div> </div> <p class="hero-lead product-lead">扩展已从本浏览器移除。默认脚本库在本机；若开启过 Google Drive 同步，数据仍在你的 Drive 应用数据区，不会进我们的服务器。</p> <div class="hero-actions uninstall-actions"> <a class="btn btn-primary product-action-btn btn-with-icon" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" role="img"> <title>Chrome</title> <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> 重新安装 </a> <a class="btn btn-ghost product-action-btn" href="mailto:amals.chrome@gmail.com?subject=RunJS%20%E5%8D%B8%E8%BD%BD%E5%8F%8D%E9%A6%88&#38;body=%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E5%8D%B8%E8%BD%BD%E5%8E%9F%E5%9B%A0%EF%BC%9A%0A%0A%E5%B8%8C%E6%9C%9B%E6%94%B9%E8%BF%9B%E7%9A%84%E5%9C%B0%E6%96%B9%EF%BC%9A%0A%0AChrome%20%E7%89%88%E6%9C%AC%EF%BC%9A%0A"> 发送反馈 </a> </div> </div> </section> <section class="product-section"> <p class="section-label">关于数据</p> <h2 class="section-title">本机优先，可选 Drive</h2> <p class="section-desc">卸载后，本浏览器里的本地脚本库会随扩展一起清除。若你曾在设置里开启 Google Drive 同步，副本仍留在你自己的 Google 账号中；我们没有独立账号体系，也不会代你清理 Drive。重新安装后可再选择是否同步回来。</p> </section> <section class="product-section"> <p class="section-label">排查</p> <h2 class="section-title">若当初注入不成功，常见原因</h2> <ul class="product-list"> <li>需要 Chrome 135 或更新版本。</li> <li>Chrome 138+ 请在扩展详情页开启「允许运行用户脚本」。</li> <li>含注入代码的条目需要该站点的访问权限；仅打开网址则不必授权。</li> </ul> </section> <section class="product-section uninstall-footer-nav"> <p class="section-desc uninstall-feedback-note"> 想告诉我们原因？发一封短邮件即可（可选）—  <a href="mailto:amals.chrome@gmail.com?subject=RunJS%20%E5%8D%B8%E8%BD%BD%E5%8F%8D%E9%A6%88&#38;body=%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E5%8D%B8%E8%BD%BD%E5%8E%9F%E5%9B%A0%EF%BC%9A%0A%0A%E5%B8%8C%E6%9C%9B%E6%94%B9%E8%BF%9B%E7%9A%84%E5%9C%B0%E6%96%B9%EF%BC%9A%0A%0AChrome%20%E7%89%88%E6%9C%AC%EF%BC%9A%0A">amals.chrome@gmail.com</a> </p> <div class="uninstall-text-links"> <a href="/zh/runjs/">RunJS 产品页</a> <span aria-hidden="true">·</span> <a href="/zh/">全部扩展</a> </div> </section> </div> </main>  <footer> <div class="wrap footer-inner"> <span>© 2026 · Chrome 扩展</span> <div class="footer-links"> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/runjs/terms/">服务条款</a>  </div> </div> </footer> </body></html>
