@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="本服务条款（“条款”）约束你对 RunJS 浏览器扩展、amals-chrome.com 上相关官方网站（含产品、隐私与支持页面）、可选的 Google 授权与脚本库同步，以及相关文档或 Chrome 网上应用店商品页（合称“服务”）的访问与使用。安装、启用或使用 RunJS，即表示你同意本条款。若不同意，请勿安装或使用本服务。"><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><meta name="color-scheme" content="dark"><link rel="canonical" href="https://amals-chrome.com/zh/runjs/terms/"><meta property="og:type" content="website"><meta property="og:site_name" content="Chrome 扩展"><meta property="og:title" content="RunJS — 服务条款"><meta property="og:description" content="本服务条款（“条款”）约束你对 RunJS 浏览器扩展、amals-chrome.com 上相关官方网站（含产品、隐私与支持页面）、可选的 Google 授权与脚本库同步，以及相关文档或 Chrome 网上应用店商品页（合称“服务”）的访问与使用。安装、启用或使用 RunJS，即表示你同意本条款。若不同意，请勿安装或使用本服务。"><meta property="og:url" content="https://amals-chrome.com/zh/runjs/terms/"><meta property="og:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><meta property="og:locale" content="zh_CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RunJS — 服务条款"><meta name="twitter:description" content="本服务条款（“条款”）约束你对 RunJS 浏览器扩展、amals-chrome.com 上相关官方网站（含产品、隐私与支持页面）、可选的 Google 授权与脚本库同步，以及相关文档或 Chrome 网上应用店商品页（合称“服务”）的访问与使用。安装、启用或使用 RunJS，即表示你同意本条款。若不同意，请勿安装或使用本服务。"><meta name="twitter:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><title>RunJS — 服务条款</title><link rel="icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png" sizes="128x128"><link rel="shortcut icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var suffix = (location.search || "") + (location.hash || "");
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path) + suffix);
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path) + suffix);
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DoU5XHHF.css"></head> <body class="rj-body">  <header class="rj-nav"> <a class="rj-brand" href="/zh/runjs/" aria-label="RunJS 首页"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <span>RunJS</span> </a> <nav class="rj-nav-links" aria-label="主导航"> <a href="/zh/">全部扩展</a> <a href="/zh/runjs/">Home</a> <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/runjs/terms/">条款</a> </nav> <div class="rj-nav-actions"> <a class="rj-lang" href="/runjs/terms/" lang="en" data-locale-switch="en" aria-label="语言"> EN </a> <a class="rj-btn-store" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank" title="Chrome 网上应用店"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">  <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Chrome 应用店 </a> </div> </header> <script>
+  (function () {
+    var root = document.body;
+    if (!root || !root.classList.contains("rj-body")) return;
+    function setNavScrolled() {
+      root.setAttribute("data-nav-scrolled", window.scrollY > 36 ? "1" : "0");
+    }
+    setNavScrolled();
+    window.addEventListener("scroll", setNavScrolled, { passive: true });
+  })();
+</script> <main class="rj-legal"> <div class="rj-legal-doc"> <p class="rj-legal-kicker">RunJS</p> <h1>服务条款</h1> <p class="rj-legal-meta">更新日期：2026-10-16</p> <p>本服务条款（“条款”）约束你对 RunJS 浏览器扩展、amals-chrome.com 上相关官方网站（含产品、隐私与支持页面）、可选的 Google 授权与脚本库同步，以及相关文档或 Chrome 网上应用店商品页（合称“服务”）的访问与使用。安装、启用或使用 RunJS，即表示你同意本条款。若不同意，请勿安装或使用本服务。</p> <p class="rj-legal-note">本页旨在向你以及审核方（含 Google OAuth / Chrome 网上应用店）说明 RunJS 的提供方式，不构成针对个人的法律意见。若本条款与你所在地强制性消费者保护规定冲突，以强制性规定为准。</p> <p> 信息处理方式见《隐私政策》。本条款说明产品如何使用、你的责任，以及可选的 Google Drive 功能。  <a href="/zh/runjs/privacy/">隐私政策</a> </p> <section> <h2>1. 运营者</h2> <p>RunJS 是面向 Google Chrome 的独立开发扩展。服务运营者为 RunJS 开发者，联系邮箱 amals.chrome@gmail.com（“运营者”“我们”）。</p><p>服务主要通过 Chrome 网上应用店分发。Google LLC（“Google”）运营 Chrome、网上应用店及 Google API（含 Google 身份验证与 Google Drive）。Google 不是 RunJS 的运营者，也不是本条款的当事方；你使用 Google 产品时仍须遵守 Google 自身条款。</p>  </section><section> <h2>2. 资格与账号</h2> <p>你须具备订立约束性合同的能力，并遵守 Chrome 网上应用店与 Google 账号规则。若未满你所在地数字同意年龄（常见为 13 岁，部分地区为 16 岁），仅可在适用法律要求的家长或监护人同意下使用。</p><p>RunJS 不要求你向运营者注册账号。可选的 Google 登录（用于 Drive 同步）使用你的 Google 账号，适用 Google 条款。你须自行负责该账号以及安装了本扩展的设备。</p>  </section><section> <h2>3. 服务内容</h2> <p>RunJS 允许你绑定名称、目标网址（或所有站点）与可选的、由你编写的 CSS/JavaScript；一次操作可打开该网址，并在保存了代码时于匹配站点加载后注入。也可开启「自动注入」在匹配导航完成后运行，或禁用脚本而不删除。若 CSS 与 JS 均为空，则可能仅打开网址，注入无需站点访问权限。</p><p>常见本地功能包括带 Monaco 编辑器的 Dashboard 脚本库、弹窗启动器、匹配模式、注入时机与执行环境、可选网页右键菜单、JSON 备份导入导出，以及界面偏好（语言、主题、字体、布局、功能开关）。功能可能随 Chrome API 与产品迭代变化。</p> <ul> <li>服务以本地优先：除非你主动开启并授权云端选项，脚本库与偏好保存在本机 Chrome 存储中。</li><li>运营者默认不运营用于托管你脚本库的自有后端。</li><li>扩展内不含广告，也不含用于追踪你浏览行为的第三方分析 SDK。</li><li>Chrome 版本要求（当前为 Chrome 135+；Chrome 138+ 需开启「允许运行用户脚本」）见商品页与应用内说明。注入功能须满足这些要求。</li> </ul> </section><section> <h2>4. 使用许可</h2> <p>在遵守本条款的前提下，运营者授予你一项个人、有限、可撤销、非独占、不可转让的许可，允许你在自己控制的 Chrome 浏览器上安装并合法使用 RunJS。</p><p>你不得：在强制性法律允许范围之外对本扩展进行反向工程；去除权利声明；将修改版冒充官方 RunJS 分发；利用名称、图标或商品页冒充运营者；或规避安全、权限或商店政策。</p>  </section><section> <h2>5. 你的脚本与其他内容</h2> <p>你对其创建或导入的 CSS、JavaScript、名称、网址、匹配模式及其他材料（“你的内容”）保留既有权利。你对你的内容以及所针对的网站自行承担责任。</p><p>使用本服务即表示你有权在自己的设备上存储并运行你的内容；若开启同步，亦有权将其存入你的 Google 账号。你仅授予运营者为实现你所使用功能所需的有限技术许可（例如在本机 Dashboard 中展示）。运营者不主张拥有你的内容。</p> <ul> <li>注入代码可能改变网站外观与行为、提交表单或与页面脚本交互，从而违反站点条款、当地法律或他人权利。</li><li>不得将 RunJS 用于攻击系统、窃取凭证、传播恶意软件、规避安全、违法或违反站点条款的抓取、剥削未成年人，或其他违法有害活动。</li><li>运营者不会在你运行前审查你的内容，也不是你的律师、安全审计方，或你所自定义网站的运营者。</li> </ul> </section><section> <h2>6. 可接受使用</h2> <p>你同意不滥用服务，亦不得协助他人滥用。包括但不限于不得：</p> <ul> <li>干扰 Chrome、其他扩展或其他用户的设备；</li><li>未经授权尝试访问运营者系统（如有）或其他用户的 Google 数据；</li><li>对 Chrome 网上应用店、Google OAuth 或 Drive API 进行自动化批量滥用；</li><li>上传或同步你无权存储的内容；</li><li>以对 Google API 或第三方站点造成不合理负载的方式使用 RunJS；</li><li>以违反 Chrome 网上应用店政策的方式歪曲本扩展用途。</li> </ul> </section><section> <h2>7. 权限与 Chrome 设置</h2> <p>Chrome 会显示权限提示。可选的站点访问用于在你选择的站点上注入，以及部分列表图标获取。拒绝授权仍可本地保存；未授权则无法注入，部分图标功能也不可用。</p><p>Chrome 138+ 上注入还须在扩展详情页开启「允许运行用户脚本」。该开关由 Chrome 控制，并非运营者的隐藏服务器。</p><p>你可随时通过 Chrome 与 Google 账号设置撤销站点访问、停用或卸载扩展，或退出 Google。</p>  </section><section> <h2>8. Google 授权与 Drive 同步</h2> <p>若你选择连接 Google / Drive 同步（以你已安装版本中实际提供的功能为准），RunJS 将申请 Google OAuth，以便在你的 Google 账号下读写与脚本库相关的文件——通常为 Google Drive 应用数据区中的索引与按脚本分文件，或应用获授权的其他文件，详见应用内界面与《隐私政策》。</p><p>此项为可选。你可以完全在本地使用 RunJS 而不连接 Google。连接 Google 即表示你指示将你的内容存储或合并到 Google 服务中，并受 Google 条款与隐私政策约束。</p> <ul> <li>运营者不获取你的 Google 密码。令牌通过 Chrome identity API 与 Google OAuth 流程取得。</li><li>授权范围限于产品所需（例如 Drive 应用数据或由本应用创建的文件）。RunJS 不是通用网盘管理器；除非未来版本明确申请且你另行同意，否则不会浏览你的整个 Drive。</li><li>同步不能替代你自己的备份。冲突、时钟偏差、网络错误、API 配额、撤销授权或“后写覆盖”合并可能导致丢失或意外覆盖。无法承受丢失的内容请自行导出 JSON 备份。</li><li>断开 Google 或卸载 RunJS 后，副本可能仍留在你的 Google 账号中，直至你在 Drive / Google 账号设置中删除。卸载扩展不会自动删除 Google 侧副本。</li><li>Google 可能变更 API、配额或政策。若 Google 或 Chrome 导致功能无法合规或无法维持，运营者可能暂停或调整同步。</li> </ul> </section><section> <h2>9. 导入、导出与备份</h2> <p>JSON 导入/导出读写你在本机选择的文件。导出默认不加密，请像对待脚本库一样保管。导入可能按你选择的冲突策略覆盖本地条目。</p><p>你须自行安全保存备份，并避免将备份分享给不应获得你的脚本或目标网址的人。</p>  </section><section> <h2>10. 第三方网站与服务</h2> <p>当 RunJS 打开网址或在页面上注入时，你离开扩展界面，与该网站的交互适用该站自己的条款。运营者无法控制第三方站点、其可用性或内容。</p><p>在已授权站点访问时，列表图标可能来自目标站，或来自 Chrome 本地 favicon 缓存。不为此使用第三方图标 CDN。</p><p>支持或打赏链接（如 PayPal、Ko-fi、微信支付、支付宝）为可选的第三方服务。款项由该等服务商处理，并非扩展内建的 RunJS 支付后端。</p>  </section><section> <h2>11. 知识产权</h2> <p>RunJS 名称、标识、扩展安装包、网站及原创文档归运营者或其许可方所有。Chrome、Chrome 徽标、Google Drive 及其他 Google 标识为 Google LLC 的商标。商品页或界面中出现这些标识，不表示 Google 背书 RunJS。</p><p>扩展可能包含第三方开源库（例如编辑器组件），各组件仍适用其原有许可。</p>  </section><section> <h2>12. 变更、试验功能与可用性</h2> <p>运营者可能增删改功能（含 Google 同步），以跟进 Chrome、Google API 或商店政策。预发布或试验功能可能不完整或被撤回。</p><p>服务可能因浏览器/系统更新、商店下架、API 中断或你自身设置而中断。运营者不保证不间断或无错误运行。</p>  </section><section> <h2>13. 无担保声明</h2> <p>在法律允许的最大范围内，本服务按“现状”和“可用”提供。运营者否认所有明示、默示或法定担保，包括适销性、特定用途适用性、权属与不侵权。</p><p>运营者不保证注入在每个网站上成功、同步会保留每一次编辑、你的内容可以安全运行，或服务满足你的要求。在真实网站上运行用户脚本的风险由你自行承担。</p>  </section><section> <h2>14. 责任限制</h2> <p>在法律允许的最大范围内，运营者不对因本服务引起或与之相关的任何间接、附带、特殊、后果性、惩戒性或惩罚性损害，或任何数据、利润、商誉或业务中断损失承担责任，即使已被告知可能发生。</p><p>在法律允许的最大范围内，运营者就与本服务相关的全部索赔承担的总责任，不超过以下二者中的较高者：（A）索赔发生前十二个月内你就本服务向运营者支付的费用（RunJS 通常免费提供，该金额一般为零）；（B）50 美元。</p><p>部分法域不允许某些限制。在该等法域，上述限制仅在允许范围内适用。本条款不排除依法不得排除的责任（例如在禁止排除的情形下因过失造成的人身伤亡）。</p>  </section><section> <h2>15. 赔偿</h2> <p>因你的内容、你在第三方站点上使用 RunJS、你违反本条款或法律、或你滥用 Google API 或他人账号而产生的索赔、损害、损失及合理费用（含律师费），你应为运营者抗辩、赔偿并使其免受损害——但运营者故意不当行为导致的部分除外。</p>  </section><section> <h2>16. 中止与终止</h2> <p>你可随时停用或卸载扩展以停止使用；如已连接 Google，还可在 Google 账号中撤销访问。</p><p>若你严重违反本条款，或因法律、Google 或 Chrome 网上应用店要求，运营者可停止分发、要求更新或拒绝支持。卸载后，本机 Chrome 存储可能被浏览器清除；Google 托管的副本在你删除前仍然存在。</p>  </section><section> <h2>17. 隐私</h2> <p>《隐私政策》说明本机存储内容、运营者不收集的信息，以及你启用时可选的 Google Drive 访问如何工作。若与数据处理有关的内容冲突，以《隐私政策》为准；许可、可接受使用与责任以本条款为准。</p>  </section><section> <h2>18. 出口与制裁</h2> <p>若适用的出口管制或制裁法律禁止你使用 Chrome、Google 服务或类似软件，则你不得使用本服务。你须遵守所在地法规。</p>  </section><section> <h2>19. 条款变更</h2> <p>运营者可通过在本网址发布新版本并更新日期来修改本条款。对 Google 授权范围或你的内容如何发送至 Google 的重大变更，亦会体现在《隐私政策》及依法所需的应用内同意中。</p><p>更新生效后继续使用，即视为接受，但当地法律要求另行同意的除外。若不同意，请卸载扩展并撤销 Google 访问。</p>  </section><section> <h2>20. 准据法与争议</h2> <p>本条款适用运营者主要经营地的法律（不包括冲突规范），但不影响你作为消费者所在地不得放弃的强制性保护规定。</p><p>请先通过 amals.chrome@gmail.com 尝试友好解决。如需司法管辖，可由对运营者有管辖权的法院审理，且不限制你依法在居住地起诉的强制性消费者权利。</p><p>若你作为欧洲经济区、英国或类似制度下的消费者使用本服务，你可能还有权使用法定争议解决途径。</p>  </section><section> <h2>21. 一般条款</h2> <p>本条款构成你与运营者就本服务的完整协议，取代此前关于同一主题的非正式陈述，但《隐私政策》及特定功能的应用内说明除外。</p><p>某一条款无法执行的，其余条款仍然有效。未行使某项权利不构成放弃。未经运营者同意你不得转让本条款；运营者可在项目转让时一并转让。</p><p>本条款英文版为提交 Google OAuth 品牌认证与 Chrome 网上应用店审核的版本。中文译文仅供便利。发生冲突时以英文版为准，但当地法律要求以当地语言文本为准的除外。</p>  </section><section> <h2>22. 联系方式</h2> <p>条款相关问题：amals.chrome@gmail.com。产品页：https://amals-chrome.com/runjs/。也可使用 RunJS 在 Chrome 网上应用店商品页上的支持 / 联系渠道。</p>  </section> <p class="rj-legal-related"> <a href="/zh/runjs/privacy/">隐私政策</a> <span aria-hidden="true">·</span> <a href="/zh/runjs/">Home</a> <span aria-hidden="true">·</span> <a href="/zh/">全部扩展</a> </p> </div> </main> <footer class="rj-footer"> <div class="rj-footer-inner"> <div class="rj-footer-brand"> <div class="rj-footer-brand-row"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <strong>RunJS</strong> </div> <p>用自己的 CSS 与 JS 重新定义任意网站 — 本地优先，无广告无追踪。</p> </div> <nav class="rj-footer-links" aria-label="页脚"> <a href="/zh/">全部扩展</a> <a href="/zh/runjs/">Home</a> <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/runjs/terms/">条款</a> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> </nav> </div> <div class="rj-footer-bottom"> <span>扩展 · Chrome 扩展</span> <span>© 2026 · RunJS</span> </div> </footer> <script>
+    (function () {
+      document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+        el.addEventListener("click", function () {
+          try {
+            localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+          } catch (err) {}
+        });
+      });
+    })();
+  </script>  </body></html>

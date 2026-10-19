@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="RunJS binds CSS and JavaScript to URLs you choose, then injects after the page loads — local-first, no ads, no tracking."><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><meta name="color-scheme" content="dark"><link rel="canonical" href="https://amals-chrome.com/runjs/"><meta property="og:type" content="website"><meta property="og:site_name" content="Chrome Extensions"><meta property="og:title" content="RunJS · Chrome Extensions"><meta property="og:description" content="RunJS binds CSS and JavaScript to URLs you choose, then injects after the page loads — local-first, no ads, no tracking."><meta property="og:url" content="https://amals-chrome.com/runjs/"><meta property="og:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RunJS · Chrome Extensions"><meta name="twitter:description" content="RunJS binds CSS and JavaScript to URLs you choose, then injects after the page loads — local-first, no ads, no tracking."><meta name="twitter:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><title>RunJS · Chrome Extensions</title><link rel="icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png" sizes="128x128"><link rel="shortcut icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var suffix = (location.search || "") + (location.hash || "");
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path) + suffix);
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path) + suffix);
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DoU5XHHF.css"></head> <body class="rj-body">  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RunJS","applicationCategory":"BrowserApplication","operatingSystem":"Google Chrome","description":"RunJS binds CSS and JavaScript to URLs you choose, then injects after the page loads — local-first, no ads, no tracking.","url":"https://amals-chrome.com/runjs/","image":"https://amals-chrome.com/assets/products/runjs/og-runjs.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","url":"https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe"}}</script> <div class="rj-scroll-progress" id="rjScrollProgress" aria-hidden="true"></div> <header class="rj-nav"> <a class="rj-brand" href="/runjs/" aria-label="RunJS home"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <span>RunJS</span> </a> <nav class="rj-nav-links" aria-label="Primary"> <a href="/">All extensions</a>  <a href="#how">How it works</a> <a href="#features">Features</a> <a href="#workflow">Workflow</a> <a href="#matrix">Matrix</a> <a href="#requirements">Requirements</a>  <a href="/runjs/privacy/">Privacy</a> <a href="/runjs/terms/">Terms</a> </nav> <div class="rj-nav-actions"> <a class="rj-lang" href="/zh/runjs/" lang="zh-CN" data-locale-switch="zh" aria-label="Language"> 中文 </a> <a class="rj-btn-store" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank" title="Chrome Web Store"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">  <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Chrome Store </a> </div> </header> <script>
+  (function () {
+    var root = document.body;
+    if (!root || !root.classList.contains("rj-body")) return;
+    function setNavScrolled() {
+      root.setAttribute("data-nav-scrolled", window.scrollY > 36 ? "1" : "0");
+    }
+    setNavScrolled();
+    window.addEventListener("scroll", setNavScrolled, { passive: true });
+  })();
+</script> <main> <section class="rj-hero"> <div class="rj-hero-inner"> <div class="rj-hero-copy"> <div class="rj-badge"> <span class="rj-badge-pulse" aria-hidden="true"></span> <span>Chrome extension · local-first</span> </div> <h1 class="rj-hero-title">Redefine any site with your own CSS &amp; JS</h1> <p class="rj-hero-lede">Bind styles and scripts to a target URL. Open from the popup or Dashboard, then inject after the page lands. Leave code empty to open the URL only — no site access required.</p> <div class="rj-hero-actions"> <a class="rj-primary" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> Get Started <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <a class="rj-secondary" href="#features"> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.7"></path> <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"></circle> </svg> See Features </a> </div> <div class="rj-works" aria-label="Capability overview"> <span>Works seamlessly with</span> <div class="rj-works-row"> <strong><span class="rj-chip rj-chip-css">CSS</span>CSS inject</strong> <strong><span class="rj-chip rj-chip-js">JS</span>JS inject</strong> <strong><span class="rj-chip rj-chip-url">URL</span>URL binding</strong> <strong><span class="rj-chip rj-chip-mv3">MV3</span>Manifest V3</strong> <strong><span class="rj-chip rj-chip-auto">AUTO</span>Auto inject</strong> </div> </div> </div> <div class="rj-stage" data-hero-stage aria-label="Product preview"> <div class="rj-orbit" aria-hidden="true"> <span class="oc-1">.css</span> <span class="oc-2">.js</span> <span class="oc-3">inject</span> <span class="oc-4">auto</span> <span class="oc-5">match</span> <span class="oc-6">drive</span> <span class="oc-7">popup</span> </div> <div class="rj-shell" data-tilt> <div class="rj-shell-top"> <div class="rj-traffic" aria-hidden="true"><i></i><i></i><i></i></div> <div class="rj-address"> <img src="/assets/products/runjs/runjs-icon128.png" width="13" height="13" alt=""> <span class="rj-address-path">runjs/</span> <span class="rj-address-file" data-stage-file>script.css</span> </div> <div class="rj-shell-tools" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3-3" stroke-linecap="round"></path></svg> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 5v2M12 17v2M5 12h2M17 12h2" stroke-linecap="round"></path></svg> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v10M8 10l4 4 4-4M6 18h12" stroke-linecap="round" stroke-linejoin="round"></path></svg> </div> </div> <div class="rj-shell-body"> <aside class="rj-rail" aria-label="Preview scenes"> <button type="button" class="is-active" data-scene="css" data-file="script.css">CSS</button> <button type="button" data-scene="js" data-file="inject.js">JS</button> <button type="button" data-scene="url" data-file="match.url">URL</button> <button type="button" data-scene="auto" data-file="auto.js">AUTO</button> <button type="button" data-scene="sync" data-file="drive.sync">SYNC</button> </aside> <div class="rj-scene-stack" aria-hidden="true"> <div class="rj-scene rj-scene-css is-active" data-scene="css"> <div class="rj-paper"> <span class="rj-paper-title"></span> <span class="rj-paper-line w-90"></span> <span class="rj-paper-line w-75"></span> <span class="rj-paper-line w-85 is-hit"></span> <span class="rj-paper-line w-60"></span> <span class="rj-paper-block"></span> <span class="rj-paper-line w-80"></span> <span class="rj-paper-line w-50"></span> </div> </div> <div class="rj-scene rj-scene-js" data-scene="js"> <div class="rj-codepane"> <div class="rj-codepane-line"><span class="k">function</span> <span class="f">openAndInject</span>(opts) {</div> <div class="rj-codepane-line"> <span class="k">const</span> { url, css, js } = opts;</div> <div class="rj-codepane-line"> <span class="f">await</span> <span class="f">tabs.create</span>({ url });</div> <div class="rj-codepane-line"> <span class="f">inject</span>(css, js);</div> <div class="rj-codepane-line">}</div> </div> </div> <div class="rj-scene rj-scene-url" data-scene="url"> <div class="rj-sheet"> <span></span><span></span><span></span><span></span> <span></span><span class="cell-hot"></span><span></span><span></span> <span></span><span></span><span class="cell-hot"></span><span></span> <span></span><span></span><span></span><span></span> <span class="cell-hot"></span><span></span><span></span><span></span> <span></span><span></span><span></span><span class="cell-hot"></span> </div> <div class="rj-sheet-selection"></div> </div> <div class="rj-scene rj-scene-auto" data-scene="auto"> <div class="rj-eq" aria-hidden="true"> <span></span><span></span><span></span><span></span><span></span><span></span> <span></span><span></span><span></span><span></span><span></span><span></span> </div> </div> <div class="rj-scene rj-scene-sync" data-scene="sync"> <div class="rj-tree"> <span class="rj-tree-row is-dir">local/</span> <span class="rj-tree-row indent">library.json</span> <span class="rj-tree-row indent">prefs.json</span> <span class="rj-tree-row is-dir">drive/</span> <span class="rj-tree-row indent">scripts.json</span> <span class="rj-tree-row indent">last-sync</span> </div> </div> <div class="rj-scan-beam" aria-hidden="true"></div> </div> </div> </div> </div> </div> <div class="rj-marquee" aria-label="Capability tags" role="presentation"> <div class="rj-marquee-track"> <div class="rj-marquee-group"> <span>css</span><span>js</span><span>inject</span><span>auto</span><span>match</span><span>all-sites</span><span>monaco</span><span>popup</span><span>dashboard</span><span>drive</span><span>local</span><span>spa</span><span>iframe</span><span>persist</span><span>mv3</span><span>user-scripts</span> </div> <div class="rj-marquee-group" aria-hidden="true"> <span>css</span><span>js</span><span>inject</span><span>auto</span><span>match</span><span>all-sites</span><span>monaco</span><span>popup</span><span>dashboard</span><span>drive</span><span>local</span><span>spa</span><span>iframe</span><span>persist</span><span>mv3</span><span>user-scripts</span> </div> </div> </div> </section> <section class="rj-stats-band" aria-label="Highlights"> <div class="rj-stats"> <div class="rj-stat"> <strong>Local</strong> <span>On-device by default</span> </div> <div class="rj-stat"> <strong>135+</strong> <span>Chrome required</span> </div> <div class="rj-stat"> <strong>Drive</strong> <span>Optional cloud sync</span> </div> <div class="rj-stat"> <strong>Free</strong> <span>No ads · no tracking</span> </div> </div> </section> <section class="rj-section" id="how"> <div class="rj-section-heading"> <p>Two ways to use it</p> <h2>Open and inject — or just open the URL</h2> <p class="rj-lede">Save a name, target URL, and optional CSS/JS in the Dashboard. Local-first by default; turn on Google Drive sync when you need it.</p> </div> <div class="rj-way-grid"> <article class="rj-glow-card"> <span class="rj-card-tag"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg> Drop-in </span> <h3>Open &amp; inject</h3> <p>Click a saved entry to open the URL and inject after load. Empty CSS/JS means open-only.</p> <div class="rj-editor"> <div class="rj-editor-bar"> <i></i><i></i><i></i> <strong>terminal</strong> </div> <pre><span class="prompt">$</span> <span class="em">runjs open</span> example.com
+<span class="prompt">→</span> inject after load</pre> </div> </article> <article class="rj-glow-card"> <span class="rj-card-tag"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M4 7h16v10H4V7Zm4 10V7m8 10V7" stroke="currentColor" stroke-width="1.7"></path> </svg> Local-first </span> <h3>Local-first</h3> <p>Scripts, preferences, and drafts stay on this device; optionally sync to your Google Drive app data.</p> <div class="rj-editor"> <div class="rj-editor-bar"> <i></i><i></i><i></i> <strong>storage.json</strong> </div> <pre><span class="em">local</span>: scripts + prefs
+drive: optional appData
+ads: <span class="em">false</span></pre> </div> </article> </div> </section> <section class="rj-section" id="highlights" data-reveal> <div class="rj-section-heading"> <p>Highlights</p> <h2>Real-page ready</h2> <p class="rj-lede">Follows redirects, supports SPAs and iframes, with configurable inject timing.</p> </div> <div class="rj-feature-grid"> <article class="rj-feature"> <div class="rj-feature-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"> <path d="M4 7h16M4 12h10M4 17h13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path> </svg> </div> <h3>Scoped injection</h3> <p>One URL or all sites; match patterns, auto-inject, and enable/disable per script.</p> </article> <article class="rj-feature"> <div class="rj-feature-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"> <rect x="4" y="5" width="16" height="14" rx="2.5" stroke="currentColor" stroke-width="1.8"></rect> <path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path> </svg> </div> <h3>Monaco editor</h3> <p>Completions, hover, and Less/Sass in the Dashboard — theme and fonts follow extension settings.</p> </article> <article class="rj-feature"> <div class="rj-feature-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"> <path d="M12 3l7 3v5c0 4.2-2.8 7.8-7 9-4.2-1.2-7-4.8-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path> </svg> </div> <h3>Proportionate permissions</h3> <p>Site access is requested only when you save inject code; declining still saves locally. Chrome 138+ also needs Allow User Scripts enabled.</p> </article> </div> </section> <section class="rj-section" id="features" data-reveal> <div class="rj-section-heading"> <p>Features</p> <h2>What you can do</h2> </div> <div class="rj-feat-grid"> <article class="rj-feat-card"> <strong>Dashboard</strong> <p>library with General / CSS / JS / Settings / Permissions, Monaco editor, format, URL test, and draft restore.</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>Popup</strong> <p>search and filter; click to open-and-inject, or open only when code is empty.</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>Injection</strong> <p>host + path-prefix or Chrome match patterns; isolated or page-main world; start / DOM ready / load / idle / delay; persist across refresh.</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>Library tools</strong> <p>import/export JSON, batch delete, drag reorder, conflict handling on import.</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>Optional Google Drive sync</strong> <p>Settings → Storage; merge per script; deletes and list order sync too.</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>Context menu</strong> <p>right-click any page to open and inject; follows redirects for everyday one-click runs.</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article> </div> </section> <section class="rj-section" id="workflow" data-reveal> <div class="rj-split-heading"> <div> <p>Drop-in workflow</p> <h2>Get into a workflow in minutes</h2> </div> <p>Site library, local / Drive, right-click inject, editor, and run timing — five slides through the core loop.</p> </div> <div class="rj-showcase" data-ss-showcase> <aside class="rj-ss-tabs" role="tablist" aria-label="Drop-in workflow"> <strong>Contents</strong> <button type="button" class="rj-ss-tab on" data-ss-tab="0" role="tab" aria-selected="true"> Site library </button><button type="button" class="rj-ss-tab" data-ss-tab="1" role="tab"> Drive sync </button><button type="button" class="rj-ss-tab" data-ss-tab="2" role="tab"> Open &amp; inject </button><button type="button" class="rj-ss-tab" data-ss-tab="3" role="tab"> Edit &amp; save </button><button type="button" class="rj-ss-tab" data-ss-tab="4" role="tab"> Timing &amp; worlds </button> </aside> <div class="rj-ss-stage"> <section class="rj-ss-slide on" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1">Every site, one library</h3> <div class="rj-ss-sub">Your scripts, grouped per URL
+Filter, edit, run — Local &amp; Google Drive</div> <div class="rj-ss-pills"> <span class="rj-ss-pill">Scripts</span> <span class="rj-ss-pill">Per-URL</span> </div> </div> <div class="rj-ss-card"> <div class="rj-ss-g"> <div class="rj-ss-search"> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"> <circle cx="10.5" cy="10.5" r="7"></circle> <path d="M16 16l5 5"></path> </svg> Filter by name or URL </div> <div class="rj-ss-row"> <div class="rj-ss-fav rj-ss-fav-g">G</div> <div> <div class="rj-ss-sname">Google</div> <div class="rj-ss-surl">https://www.google.com</div> </div> <div class="rj-ss-edit" aria-hidden="true">✎</div> </div> <div class="rj-ss-row"> <div class="rj-ss-fav rj-ss-fav-ig">◎</div> <div> <div class="rj-ss-sname">Instagram</div> <div class="rj-ss-surl">https://www.instagram.com</div> </div> <div class="rj-ss-edit" aria-hidden="true">✎</div> </div> <div class="rj-ss-row"> <div class="rj-ss-fav rj-ss-fav-x">𝕏</div> <div> <div class="rj-ss-sname">X</div> <div class="rj-ss-surl">https://x.com</div> </div> <div class="rj-ss-edit" aria-hidden="true">✎</div> </div> <div class="rj-ss-row"> <div class="rj-ss-fav rj-ss-fav-all">▣</div> <div> <div class="rj-ss-sname">All sites injected</div> <div class="rj-ss-surl">All sites</div> </div> <div class="rj-ss-edit" aria-hidden="true">✎</div> </div> </div> </div> </section> <section class="rj-ss-slide" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1">Local-first privacy</h3> <div class="rj-ss-sub">Browser storage by default
+Google Drive sync when you want it</div> <div class="rj-ss-pills"> <span class="rj-ss-pill">No ads</span> <span class="rj-ss-pill">No tracking</span> <span class="rj-ss-pill">Import / Export</span> </div> </div> <div class="rj-ss-card"> <div class="rj-ss-g"> <div class="rj-ss-ctitle">Storage</div> <div class="rj-ss-csub">Local library usage and optional Google Drive sync.</div> <div class="rj-ss-heading">Storage provider</div> <div class="rj-ss-opt"> <span class="rj-ss-opt-icon" aria-hidden="true">▣</span> <div> <div class="rj-ss-opt-name">Browser storage</div> <div class="rj-ss-surl">Chrome local storage on this device (default)</div> </div> </div> <div class="rj-ss-opt sel"> <span class="rj-ss-opt-icon" aria-hidden="true">↻</span> <div> <div class="rj-ss-opt-name">Google Drive</div> <div class="rj-ss-surl">Sync scripts with Google Drive across your devices</div> </div> </div> <div class="rj-ss-ostat"> <span><span class="rj-ss-dot"></span><b>Synced</b></span> <span class="rj-ss-meta">Last synced: 2026/10/16 23:42:28</span> </div> <div class="rj-ss-metric"><span>Scripts</span><b>4</b></div> <div class="rj-ss-metric"><span>Library code size</span><b>6.7 KB</b></div> <div class="rj-ss-metric"><span>Local storage</span><b>14.5 KB / 10.00 MB</b></div> </div> </div> </section> <section class="rj-ss-slide wide" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1">Open &amp; inject</h3> <div class="rj-ss-sub">Right-click any page and run script
+straight from the context menu</div> <div class="rj-ss-pills"> <span class="rj-ss-pill solid">One click</span> <span class="rj-ss-pill">Follows redirects</span> </div> </div> <div class="rj-ss-card rj-ss-card-center"> <div class="rj-ss-menupic"> <img src="/assets/products/runjs/runjs-context-menu.jpg" alt="RunJS context menu mockup" width="420" height="540" loading="lazy"> </div> </div> </section> <section class="rj-ss-slide" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1">CSS + JS Editor</h3> <div class="rj-ss-sub">Edit with syntax highlighting
+Save stays in sync with your library</div> <div class="rj-ss-pills"> <span class="rj-ss-pill">Import / Export</span> <span class="rj-ss-pill">Format</span> </div> </div> <div class="rj-ss-card"> <div class="rj-ss-g"> <div class="rj-ss-status"> <span class="rj-ss-st1">EDIT</span> <span class="rj-ss-st2"><i class="rj-ss-gdot"></i>SAVED — MATCHES LIBRARY</span> </div> <div class="rj-ss-toolrow"> <span class="rj-ss-chip">Import</span> <span class="rj-ss-chip">Export</span> <span class="rj-ss-chip">Format</span> </div> <div class="rj-ss-code"> <div class="rj-ss-cl"><span class="rj-ss-ln">1</span><span class="rj-ss-tx"><span class="rj-ss-k">function</span> (global, undefined) {</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">2</span><span class="rj-ss-tx"> <span class="rj-ss-str">"use strict"</span>;</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">3</span><span class="rj-ss-tx"> undefinedVariable = {};</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">6</span><span class="rj-ss-tx"> <span class="rj-ss-k">function</span> <span class="rj-ss-fn">initializeProperties</span>(target, members) {</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">7</span><span class="rj-ss-tx"> <span class="rj-ss-k">var</span> keys = <span class="rj-ss-fn">Object.keys</span>(members);</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">8</span><span class="rj-ss-tx"> <span class="rj-ss-k">var</span> properties;</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">10</span><span class="rj-ss-tx"> <span class="rj-ss-k">for</span> (i = <span class="rj-ss-num">0</span>, len = keys.length; i &lt; len; i++) {</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">11</span><span class="rj-ss-tx"> <span class="rj-ss-k">var</span> key = keys[i];</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">12</span><span class="rj-ss-tx"> <span class="rj-ss-k">var</span> enumerable = key.<span class="rj-ss-fn">charCodeAt</span>(<span class="rj-ss-num">0</span>) !== <span class="rj-ss-num">95</span>;</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">15</span><span class="rj-ss-tx"> <span class="rj-ss-k">if</span> (member.value !== <span class="rj-ss-k">undefined</span> ||</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">19</span><span class="rj-ss-tx"> properties = properties || {};</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">26</span><span class="rj-ss-tx"> properties[key] = { value: member, <span class="rj-ss-k">writable</span>: <span class="rj-ss-k">true</span> }</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">27</span><span class="rj-ss-tx"> }</span></div> </div> <div class="rj-ss-btns"> <button type="button" class="rj-ss-btn" tabindex="-1">Revert</button> <button type="button" class="rj-ss-btn solid" tabindex="-1">Save changes</button> </div> </div> </div> </section> <section class="rj-ss-slide" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1 bp">Timing &amp; worlds</h3> <div class="rj-ss-sub">Choose when and where
+your code runs</div> <div class="rj-ss-pills"> <span class="rj-ss-pill solid">Isolated</span> <span class="rj-ss-pill">Page-main</span> </div> </div> <div class="rj-ss-card"> <div class="rj-ss-g"> <div class="rj-ss-sec">Run</div> <div class="rj-ss-frow"><span>Execution environment</span><span class="rj-ss-sel">Isolated environment ▾</span></div> <div class="rj-ss-frow"><span>Run timing</span><span class="rj-ss-sel">After DOM is ready ▾</span></div> <div class="rj-ss-frow"><span>Delayed run</span><span class="rj-ss-inp">1000</span></div> <div class="rj-ss-frow"><span>Run in iframes</span><span class="rj-ss-tog on"></span></div> <div class="rj-ss-sec">Page inject</div> <div class="rj-ss-frow"><span>Auto inject</span><span class="rj-ss-tog on"></span></div> <div class="rj-ss-frow"><span>Persistent script</span><span class="rj-ss-tog on"></span></div> <div class="rj-ss-frow"><span>Injection count</span><span class="rj-ss-inp">1</span></div> <div class="rj-ss-sec">Script settings</div> <div class="rj-ss-frow"><span>Enable script</span><span class="rj-ss-tog on"></span></div> </div> </div> </section> </div> </div> </section> <section class="rj-section" id="matrix" data-reveal> <div class="rj-section-heading"> <p>Capability matrix</p> <h2>Built for real browsing workflows</h2> </div> <div class="rj-format-grid"> <article data-reveal data-reveal-delay="1"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><path class="fill" d="M7 6h14v20H7V6Z"></path><path class="mark" d="M13 14l5 3.5-5 3.5V14Z"></path></svg> </div> <h3>Open &amp; inject</h3> <p>One-click runs</p> <div class="rj-tag-list"> <span>open</span><span>inject</span><span>redirect</span><span>spa</span> </div> </article><article data-reveal data-reveal-delay="2"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><path class="fill" d="M8 4h11l5 5v19H8V4Z"></path><path class="mark" d="M12 15h9M12 19h7M12 23h8"></path></svg> </div> <h3>Editor</h3> <p>Dashboard Monaco</p> <div class="rj-tag-list"> <span>css</span><span>js</span><span>less</span><span>sass</span><span>format</span> </div> </article><article data-reveal data-reveal-delay="3"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><circle class="fill" cx="16" cy="16" r="10"></circle><circle class="mark" cx="16" cy="16" r="3.5"></circle><path class="mark" d="M16 6v3M16 23v3M6 16h3M23 16h3"></path></svg> </div> <h3>Inject scope</h3> <p>Precise or broad</p> <div class="rj-tag-list"> <span>url</span><span>match</span><span>all-sites</span><span>iframe</span> </div> </article><article data-reveal data-reveal-delay="1"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><circle class="fill" cx="16" cy="16" r="10"></circle><path class="mark" d="M16 10v6.5l4 2.2"></path></svg> </div> <h3>Timing</h3> <p>When code runs</p> <div class="rj-tag-list"> <span>start</span><span>domready</span><span>load</span><span>idle</span><span>delay</span> </div> </article><article data-reveal data-reveal-delay="2"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><path class="mark" d="M9 14a7 7 0 0 1 12-3.5L23 13M23 18a7 7 0 0 1-12 3.5L9 19"></path><path class="mark" d="M21 7v5h-5M11 25v-5h5"></path></svg> </div> <h3>Sync &amp; backup</h3> <p>Optional cloud</p> <div class="rj-tag-list"> <span>local</span><span>drive</span><span>import</span><span>export</span> </div> </article><article data-reveal data-reveal-delay="3"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><path class="fill" d="M10 14h12v12H10V14Z"></path><path class="mark" d="M12.5 14V11a3.5 3.5 0 0 1 7 0v3"></path></svg> </div> <h3>Permissions</h3> <p>Ask when needed</p> <div class="rj-tag-list"> <span>host</span><span>user-scripts</span><span>enable</span><span>disable</span> </div> </article> </div> </section> <section class="rj-section" id="requirements" data-reveal> <div class="rj-section-heading"> <p>Requirements</p> <h2>Chrome 135+</h2> </div> <div class="rj-req"> <p> Requires Chrome 135+. To inject saved scripts on Chrome 138+, open  <code>chrome://extensions</code>  → RunJS details → enable Allow User Scripts. Site access is requested only for origins where you saved inject code. </p> </div> </section> <section class="rj-cta-band"> <div class="rj-cta-inner"> <h2>Redefine the sites you open every day — without editing their source</h2> <p class="rj-lede">Keep scripts local-first; turn on Drive sync when you need it. Install from the Chrome Web Store to begin.</p> <div class="rj-cta-actions"> <a class="rj-primary" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> Get Started <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <a class="rj-secondary" href="/runjs/privacy/">Privacy</a>  </div> </div> </section> </main> <footer class="rj-footer"> <div class="rj-footer-inner"> <div class="rj-footer-brand"> <div class="rj-footer-brand-row"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <strong>RunJS</strong> </div> <p>Redefine any site with your own CSS &amp; JS — local-first, no ads, no tracking.</p> </div> <nav class="rj-footer-links" aria-label="Footer"> <a href="/">All extensions</a> <a href="#features">Features</a> <a href="/runjs/privacy/">Privacy</a> <a href="/runjs/terms/">Terms</a> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> </nav> </div> <div class="rj-footer-bottom"> <span>Extension · Chrome extension</span> <span>© 2026 · RunJS</span> </div> </footer> <script>
+    (function () {
+      var root = document.body;
+      var docEl = document.documentElement;
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce) root.setAttribute("data-motion", "on");
+
+      var progress = document.getElementById("rjScrollProgress");
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".rj-nav-links a[href^=\"#\"]"));
+      var sectionIds = navLinks
+        .map(function (a) {
+          return a.getAttribute("href");
+        })
+        .filter(Boolean);
+      var ticking = false;
+
+      function setProgress() {
+        if (!progress) return;
+        var max = docEl.scrollHeight - window.innerHeight;
+        var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        progress.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      }
+
+      function setNavScrolled() {
+        root.setAttribute("data-nav-scrolled", window.scrollY > 36 ? "1" : "0");
+      }
+
+      function setActiveNav() {
+        if (!navLinks.length) return;
+        var marker = window.scrollY + Math.max(180, Math.min(240, window.innerHeight * 0.32));
+        var current = "";
+        sectionIds.forEach(function (hash) {
+          var el = document.querySelector(hash);
+          if (!el) return;
+          var top = el.getBoundingClientRect().top + window.scrollY;
+          if (top <= marker) current = hash;
+        });
+        navLinks.forEach(function (a) {
+          a.classList.toggle("active", a.getAttribute("href") === current);
+        });
+      }
+
+      function onScrollFrame() {
+        ticking = false;
+        setProgress();
+        setNavScrolled();
+        setActiveNav();
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(onScrollFrame);
+      }
+
+      onScrollFrame();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll, { passive: true });
+
+      function scrollToHash(behavior) {
+        if (!location.hash || location.hash.length <= 1) return;
+        var hashEl = document.querySelector(location.hash);
+        if (!hashEl) return;
+        var headerH = parseFloat(getComputedStyle(root).getPropertyValue("--header-height")) || 68;
+        var hashTop = hashEl.getBoundingClientRect().top + window.scrollY - headerH - 18;
+        window.scrollTo({ top: Math.max(0, hashTop), behavior: behavior || "auto" });
+        onScrollFrame();
+      }
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          scrollToHash("auto");
+          setTimeout(function () {
+            scrollToHash("auto");
+          }, 120);
+        });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          var hash = a.getAttribute("href");
+          if (!hash || hash === "#") return;
+          var target = document.querySelector(hash);
+          if (!target) return;
+          e.preventDefault();
+          var top =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            (parseFloat(getComputedStyle(root).getPropertyValue("--header-height")) || 68) -
+            18;
+          window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+          if (history.replaceState) history.replaceState(null, "", hash);
+          else location.hash = hash;
+          navLinks.forEach(function (link) {
+            link.classList.toggle("active", link.getAttribute("href") === hash);
+          });
+        });
+      });
+
+      document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          try {
+            localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+          } catch (err) {}
+          var hash = location.hash || "";
+          if (!hash) return;
+          e.preventDefault();
+          var href = el.getAttribute("href") || "";
+          location.href = href.split("#")[0] + hash;
+        });
+      });
+
+      function bindTilt(el, max) {
+        if (reduce || !el) return;
+        var strength = max || 6;
+        el.addEventListener("pointermove", function (e) {
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - 0.5;
+          var py = (e.clientY - r.top) / r.height - 0.5;
+          el.style.setProperty("--tilt-x", (-py * strength).toFixed(2) + "deg");
+          el.style.setProperty("--tilt-y", (px * strength).toFixed(2) + "deg");
+          el.style.setProperty("--mx", e.clientX - r.left + "px");
+          el.style.setProperty("--my", e.clientY - r.top + "px");
+        });
+        el.addEventListener("pointerleave", function () {
+          el.style.setProperty("--tilt-x", "0deg");
+          el.style.setProperty("--tilt-y", "0deg");
+        });
+      }
+
+      document.querySelectorAll(".rj-glow-card").forEach(function (card) {
+        bindTilt(card, 5);
+      });
+      bindTilt(document.querySelector(".rj-shell[data-tilt]"), 4);
+
+      var stage = document.querySelector("[data-hero-stage]");
+      if (stage) {
+        var rail = stage.querySelector(".rj-rail");
+        var fileEl = stage.querySelector("[data-stage-file]");
+        var scenes = stage.querySelectorAll(".rj-scene[data-scene]");
+        function activateScene(id, file) {
+          if (rail) {
+            rail.querySelectorAll("button[data-scene]").forEach(function (b) {
+              b.classList.toggle("is-active", b.getAttribute("data-scene") === id);
+            });
+          }
+          scenes.forEach(function (scene) {
+            scene.classList.toggle("is-active", scene.getAttribute("data-scene") === id);
+          });
+          if (fileEl && file) fileEl.textContent = file;
+          stage.classList.remove("is-scanning");
+          void stage.offsetWidth;
+          stage.classList.add("is-scanning");
+        }
+        if (rail) {
+          rail.querySelectorAll("button[data-scene]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              activateScene(btn.getAttribute("data-scene"), btn.getAttribute("data-file"));
+            });
+          });
+        }
+        stage.classList.add("is-scanning");
+      }
+
+      var showcase = document.querySelector("[data-ss-showcase]");
+      if (showcase) {
+        var ssTabs = showcase.querySelectorAll("[data-ss-tab]");
+        var ssSlides = showcase.querySelectorAll("[data-ss-slide]");
+        ssTabs.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var i = +btn.getAttribute("data-ss-tab");
+            ssTabs.forEach(function (b, idx) {
+              b.classList.toggle("on", idx === i);
+              b.setAttribute("aria-selected", idx === i ? "true" : "false");
+            });
+            ssSlides.forEach(function (slide, idx) {
+              slide.classList.toggle("on", idx === i);
+            });
+          });
+        });
+      }
+
+      var nodes = document.querySelectorAll("[data-reveal]");
+      if (reduce || !("IntersectionObserver" in window)) {
+        nodes.forEach(function (n) {
+          n.classList.add("is-revealed");
+        });
+      } else {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-revealed");
+              io.unobserve(entry.target);
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+        );
+        nodes.forEach(function (n) {
+          io.observe(n);
+        });
+      }
+    })();
+  </script>  </body></html>

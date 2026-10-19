@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Thanks for trying RunJS. Scripts stay on this device by default, with optional Google Drive sync. If injection failed, check Chrome version and Allow User Scripts."><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><meta name="color-scheme" content="dark"><link rel="canonical" href="https://amals-chrome.com/runjs/uninstall/"><meta property="og:type" content="website"><meta property="og:site_name" content="Chrome Extensions"><meta property="og:title" content="RunJS · Uninstalled"><meta property="og:description" content="Thanks for trying RunJS. Scripts stay on this device by default, with optional Google Drive sync. If injection failed, check Chrome version and Allow User Scripts."><meta property="og:url" content="https://amals-chrome.com/runjs/uninstall/"><meta property="og:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RunJS · Uninstalled"><meta name="twitter:description" content="Thanks for trying RunJS. Scripts stay on this device by default, with optional Google Drive sync. If injection failed, check Chrome version and Allow User Scripts."><meta name="twitter:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><title>RunJS · Uninstalled</title><link rel="icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png" sizes="128x128"><link rel="shortcut icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var suffix = (location.search || "") + (location.hash || "");
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path) + suffix);
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path) + suffix);
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DoU5XHHF.css"></head> <body class="rj-body">  <header class="rj-nav"> <a class="rj-brand" href="/runjs/" aria-label="RunJS home"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <span>RunJS</span> </a> <nav class="rj-nav-links" aria-label="Primary"> <a href="/">All extensions</a> <a href="/runjs/">Home</a> <a href="/runjs/privacy/">Privacy</a> <a href="/runjs/terms/">Terms</a> </nav> <div class="rj-nav-actions"> <a class="rj-lang" href="/zh/runjs/uninstall/" lang="zh-CN" data-locale-switch="zh" aria-label="Language"> 中文 </a> <a class="rj-btn-store" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank" title="Chrome Web Store"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">  <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Chrome Store </a> </div> </header> <script>
+  (function () {
+    var root = document.body;
+    if (!root || !root.classList.contains("rj-body")) return;
+    function setNavScrolled() {
+      root.setAttribute("data-nav-scrolled", window.scrollY > 36 ? "1" : "0");
+    }
+    setNavScrolled();
+    window.addEventListener("scroll", setNavScrolled, { passive: true });
+  })();
+</script> <main class="rj-uninstall"> <section class="rj-uninstall-hero"> <div class="rj-uninstall-hero-inner"> <img class="rj-uninstall-icon" src="/assets/products/runjs/runjs-icon128.png" width="72" height="72" alt="RunJS icon"> <div class="rj-badge"> <span class="rj-badge-pulse" aria-hidden="true"></span> <span>Uninstalled · local-first</span> </div> <h1 class="rj-hero-title">Thanks for trying RunJS</h1> <p class="rj-hero-lede">The extension is removed from this browser. Your library lives on this device by default; if you enabled Google Drive sync, a copy stays in your Drive app data — not on our servers.</p> <div class="rj-hero-actions"> <a class="rj-primary" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">  <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Reinstall <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <a class="rj-secondary" href="mailto:amals.chrome@gmail.com?subject=RunJS%20uninstall%20feedback&#38;body=(optional)%20Why%20I%20uninstalled%3A%0A%0AWhat%20could%20be%20better%3A%0A%0AChrome%20version%3A%0A">Email feedback</a> </div> </div> </section> <section class="rj-section rj-uninstall-panels"> <div class="rj-uninstall-grid"> <article class="rj-feat-card"> <p class="rj-uninstall-kicker">Your data</p> <strong>Local-first, optional Drive</strong> <p>After uninstall, the local library in this browser is cleared with the extension. If you turned on Google Drive sync in Settings, that copy remains in your own Google account; we have no separate account system and cannot delete your Drive data for you. Reinstall anytime if you want to sync it back.</p> </article> <article class="rj-feat-card"> <p class="rj-uninstall-kicker">Troubleshooting</p> <strong>If injection never worked, common causes</strong> <ol class="rj-uninstall-tips"> <li>Chrome 135 or newer is required.</li><li>On Chrome 138+, enable “Allow User Scripts” on the extension details page.</li><li>Entries with inject code need site access; open-URL-only entries do not.</li> </ol> </article> </div> </section> <section class="rj-cta-band rj-uninstall-cta"> <div class="rj-cta-inner"> <p class="rj-lede"> Want to tell us why? A short email is enough (optional) —  <a class="rj-uninstall-mail" href="mailto:amals.chrome@gmail.com?subject=RunJS%20uninstall%20feedback&#38;body=(optional)%20Why%20I%20uninstalled%3A%0A%0AWhat%20could%20be%20better%3A%0A%0AChrome%20version%3A%0A">amals.chrome@gmail.com</a> </p> <div class="rj-cta-actions"> <a class="rj-secondary" href="/runjs/">Home</a> <a class="rj-secondary" href="/">All extensions</a> </div> </div> </section> </main> <footer class="rj-footer"> <div class="rj-footer-inner"> <div class="rj-footer-brand"> <div class="rj-footer-brand-row"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <strong>RunJS</strong> </div> <p>Redefine any site with your own CSS &amp; JS — local-first, no ads, no tracking.</p> </div> <nav class="rj-footer-links" aria-label="Footer"> <a href="/">All extensions</a> <a href="/runjs/">Home</a> <a href="/runjs/privacy/">Privacy</a> <a href="/runjs/terms/">Terms</a> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> </nav> </div> <div class="rj-footer-bottom"> <span>Extension · Chrome extension</span> <span>© 2026 · RunJS</span> </div> </footer> <script>
+    (function () {
+      document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+        el.addEventListener("click", function () {
+          try {
+            localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+          } catch (err) {}
+        });
+      });
+    })();
+  </script>  </body></html>

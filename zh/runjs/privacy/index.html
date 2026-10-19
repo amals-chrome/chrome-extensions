@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="RunJS 以本地优先：默认将脚本与偏好保存在本机 Chrome 存储中。我们不运营脚本库后端，不会把脚本正文或页面内容上传到我们的服务器，也不含分析或广告追踪。可选的 Google Drive 同步（需你主动开启）会把脚本库副本存入你 Google 账号下的 Drive 应用数据区，而非 RunJS 服务器。"><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><meta name="color-scheme" content="dark"><link rel="canonical" href="https://amals-chrome.com/zh/runjs/privacy/"><meta property="og:type" content="website"><meta property="og:site_name" content="Chrome 扩展"><meta property="og:title" content="RunJS — 隐私政策"><meta property="og:description" content="RunJS 以本地优先：默认将脚本与偏好保存在本机 Chrome 存储中。我们不运营脚本库后端，不会把脚本正文或页面内容上传到我们的服务器，也不含分析或广告追踪。可选的 Google Drive 同步（需你主动开启）会把脚本库副本存入你 Google 账号下的 Drive 应用数据区，而非 RunJS 服务器。"><meta property="og:url" content="https://amals-chrome.com/zh/runjs/privacy/"><meta property="og:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><meta property="og:locale" content="zh_CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RunJS — 隐私政策"><meta name="twitter:description" content="RunJS 以本地优先：默认将脚本与偏好保存在本机 Chrome 存储中。我们不运营脚本库后端，不会把脚本正文或页面内容上传到我们的服务器，也不含分析或广告追踪。可选的 Google Drive 同步（需你主动开启）会把脚本库副本存入你 Google 账号下的 Drive 应用数据区，而非 RunJS 服务器。"><meta name="twitter:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><title>RunJS — 隐私政策</title><link rel="icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png" sizes="128x128"><link rel="shortcut icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var suffix = (location.search || "") + (location.hash || "");
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path) + suffix);
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path) + suffix);
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DoU5XHHF.css"></head> <body class="rj-body">  <header class="rj-nav"> <a class="rj-brand" href="/zh/runjs/" aria-label="RunJS 首页"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <span>RunJS</span> </a> <nav class="rj-nav-links" aria-label="主导航"> <a href="/zh/">全部扩展</a> <a href="/zh/runjs/">Home</a> <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/runjs/terms/">条款</a> </nav> <div class="rj-nav-actions"> <a class="rj-lang" href="/runjs/privacy/" lang="en" data-locale-switch="en" aria-label="语言"> EN </a> <a class="rj-btn-store" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank" title="Chrome 网上应用店"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">  <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Chrome 应用店 </a> </div> </header> <script>
+  (function () {
+    var root = document.body;
+    if (!root || !root.classList.contains("rj-body")) return;
+    function setNavScrolled() {
+      root.setAttribute("data-nav-scrolled", window.scrollY > 36 ? "1" : "0");
+    }
+    setNavScrolled();
+    window.addEventListener("scroll", setNavScrolled, { passive: true });
+  })();
+</script> <main class="rj-legal"> <div class="rj-legal-doc"> <p class="rj-legal-kicker">RunJS</p> <h1>隐私政策</h1> <p class="rj-legal-meta">更新日期：2026-10-16</p> <p>RunJS 以本地优先：默认将脚本与偏好保存在本机 Chrome 存储中。我们不运营脚本库后端，不会把脚本正文或页面内容上传到我们的服务器，也不含分析或广告追踪。可选的 Google Drive 同步（需你主动开启）会把脚本库副本存入你 Google 账号下的 Drive 应用数据区，而非 RunJS 服务器。</p> <h2>我们存储的数据</h2> <p>以下内容保存在本机 Chrome 存储中（可选 Drive 脚本库副本见下方条目与「网络使用」）：</p> <ul> <li>脚本库条目（名称、网址或所有站点范围、CSS/JS、含自动注入/启用等运行设置、可选缓存图标）</li> <li>语言、主题、字体，以及可选功能偏好（网站图标嗅探、网页右键菜单）</li> <li>Dashboard 编辑中的未保存草稿（session 存储；浏览器会话结束后清除）</li> <li>打开标签页过程中的短期注入任务（session 存储）</li> <li>弹窗角标用的短期注入结果（local 存储）</li> <li>是否已关闭工具栏固定提示（local 存储）</li> <li>可选 Drive 同步在本机的状态（是否开启、关联的 Google 邮箱、上次同步时间 / 错误）— 开启同步后，脚本库副本保存在你的 Drive 应用数据区</li> </ul> <h2>我们不收集的数据</h2> <ul> <li>不上传你的脚本、网址或页面内容到 RunJS 服务器（可选 Drive 同步仅走 Google API 与你的 Google 账号）</li> <li>不含分析 SDK、广告追踪，不出售或分享个人数据</li> <li>不通读浏览历史 — 仅在判断何时注入时检查标签页 URL：与 RunJS 发起运行相关的标签（含复用已打开且匹配的标签），以及开启了「自动注入」且匹配的页面导航。不会上传或把 URL 存成浏览历史</li> <li>不下载远程脚本 — 只注入你本地保存的代码</li> </ul> <h2>网络使用</h2> <ul> <li>打开或测试目标网址时，由浏览器正常访问该站点（不经过我们代理）</li> <li>列表图标优先使用 Chrome 本地图标缓存（`favicon` 权限）。已授权站点访问且开启网站图标嗅探（设置 → 功能，默认开）时，也可能从目标站获取：读取页面 HTML 查找 `rel=icon`，再尝试常见根路径 favicon；响应会校验为图片。无可用缓存、未授权或关闭嗅探时使用内置默认图标（不向第三方图标服务请求）</li> <li>可选 Google Drive 同步：通过 Google OAuth 与 Drive API，在你的 Drive 应用数据区读写脚本库文件（按脚本分文件 + 索引）。流量发往 Google，而非 RunJS。可随时断开或改回仅本机</li> </ul> <h2>导入与导出</h2> <ul> <li>导出为明文 JSON 备份文件，由你自行保存 — 请像对待脚本库一样妥善保管；默认不加密</li> <li>导入读取你选择的 JSON 文件并在本地合并；不会发送给我们</li> </ul> <h2>权限</h2> <ul> <li>storage — 在本机保存脚本库、偏好与短期注入状态</li> <li>userScripts — 执行你编写的 CSS/JS（在本扩展详情页开启「允许运行用户脚本」；Chrome 138+）</li> <li>tabs — 打开目标网址并在匹配的标签页注入</li> <li>webNavigation — 检测页面加载、跳转、SPA 导航与 iframe 帧以便注入（含可选「自动注入」）</li> <li>windows — 验证目标网址时使用隐藏窗口</li> <li>contextMenus — 工具栏图标右键菜单项，用于打开 Dashboard 与 RunJS 公开产品页；可选网页右键脚本菜单（默认关，设置 → 功能）</li> <li>可选站点访问 — 保存注入代码时或在「权限」分页申请；拒绝仍可本地保存，注入需已授权；也用于在 Chrome 缓存缺失时从目标页刷新列表图标</li> <li>identity / identity.email — 可选 Google 登录以启用 Drive 同步（展示关联邮箱；仅本机时不使用）</li> <li>alarms — 在开启 Drive 同步时定时触发同步</li> </ul> <h2>你编写的脚本</h2> <p>注入的 CSS/JS 由你提供、本地存储，并在 Chrome 用户脚本环境中执行。你需自行对所选网站上的行为负责。</p> <h2>联系</h2> <p>如有本扩展的隐私相关问题，请发邮件至 amals.chrome@gmail.com，或通过 Chrome 网上应用店 RunJS 商品页的支持 / 联系方式与发布者联系。</p> <p class="rj-legal-related"> <a href="/zh/runjs/terms/">服务条款</a> <span aria-hidden="true">·</span> <a href="/zh/runjs/">Home</a> <span aria-hidden="true">·</span> <a href="/zh/">全部扩展</a> </p> </div> </main> <footer class="rj-footer"> <div class="rj-footer-inner"> <div class="rj-footer-brand"> <div class="rj-footer-brand-row"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <strong>RunJS</strong> </div> <p>用自己的 CSS 与 JS 重新定义任意网站 — 本地优先，无广告无追踪。</p> </div> <nav class="rj-footer-links" aria-label="页脚"> <a href="/zh/">全部扩展</a> <a href="/zh/runjs/">Home</a> <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/runjs/terms/">条款</a> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> </nav> </div> <div class="rj-footer-bottom"> <span>扩展 · Chrome 扩展</span> <span>© 2026 · RunJS</span> </div> </footer> <script>
+    (function () {
+      document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+        el.addEventListener("click", function () {
+          try {
+            localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+          } catch (err) {}
+        });
+      });
+    })();
+  </script>  </body></html>

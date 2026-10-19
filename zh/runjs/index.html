@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="RunJS 将 CSS 与 JavaScript 绑定到你指定的网址，并在页面加载后注入 — 本地优先，无广告、无追踪。"><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><meta name="color-scheme" content="dark"><link rel="canonical" href="https://amals-chrome.com/zh/runjs/"><meta property="og:type" content="website"><meta property="og:site_name" content="Chrome 扩展"><meta property="og:title" content="RunJS · Chrome 扩展"><meta property="og:description" content="RunJS 将 CSS 与 JavaScript 绑定到你指定的网址，并在页面加载后注入 — 本地优先，无广告、无追踪。"><meta property="og:url" content="https://amals-chrome.com/zh/runjs/"><meta property="og:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><meta property="og:locale" content="zh_CN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="RunJS · Chrome 扩展"><meta name="twitter:description" content="RunJS 将 CSS 与 JavaScript 绑定到你指定的网址，并在页面加载后注入 — 本地优先，无广告、无追踪。"><meta name="twitter:image" content="https://amals-chrome.com/assets/products/runjs/og-runjs.jpg"><title>RunJS · Chrome 扩展</title><link rel="icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png" sizes="128x128"><link rel="shortcut icon" href="/assets/products/runjs/runjs-icon128.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var suffix = (location.search || "") + (location.hash || "");
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path) + suffix);
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path) + suffix);
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.DoU5XHHF.css"></head> <body class="rj-body">  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RunJS","applicationCategory":"BrowserApplication","operatingSystem":"Google Chrome","description":"RunJS 将 CSS 与 JavaScript 绑定到你指定的网址，并在页面加载后注入 — 本地优先，无广告、无追踪。","url":"https://amals-chrome.com/zh/runjs/","image":"https://amals-chrome.com/assets/products/runjs/og-runjs.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","url":"https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe"}}</script> <div class="rj-scroll-progress" id="rjScrollProgress" aria-hidden="true"></div> <header class="rj-nav"> <a class="rj-brand" href="/zh/runjs/" aria-label="RunJS 首页"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <span>RunJS</span> </a> <nav class="rj-nav-links" aria-label="主导航"> <a href="/zh/">全部扩展</a>  <a href="#how">用法</a> <a href="#features">功能</a> <a href="#workflow">上手</a> <a href="#matrix">矩阵</a> <a href="#requirements">要求</a>  <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/runjs/terms/">条款</a> </nav> <div class="rj-nav-actions"> <a class="rj-lang" href="/runjs/" lang="en" data-locale-switch="en" aria-label="语言"> EN </a> <a class="rj-btn-store" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank" title="Chrome 网上应用店"> <svg class="btn-chrome-icon" viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">  <circle cx="24" cy="24" r="20" fill="#4285F4"></circle> <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z"></path> <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 38.66L24 24z"></path> <path fill="#34A853" d="M34 38.66A20 20 0 0 1 4 24h20z"></path> <circle cx="24" cy="24" r="9" fill="#fff"></circle> <circle cx="24" cy="24" r="6.5" fill="#4285F4"></circle> </svg> Chrome 应用店 </a> </div> </header> <script>
+  (function () {
+    var root = document.body;
+    if (!root || !root.classList.contains("rj-body")) return;
+    function setNavScrolled() {
+      root.setAttribute("data-nav-scrolled", window.scrollY > 36 ? "1" : "0");
+    }
+    setNavScrolled();
+    window.addEventListener("scroll", setNavScrolled, { passive: true });
+  })();
+</script> <main> <section class="rj-hero"> <div class="rj-hero-inner"> <div class="rj-hero-copy"> <div class="rj-badge"> <span class="rj-badge-pulse" aria-hidden="true"></span> <span>Chrome 扩展 · 本地优先</span> </div> <h1 class="rj-hero-title">用自己的 CSS 与 JS 重新定义任意网站</h1> <p class="rj-hero-lede">把样式与脚本绑定到目标网址。从弹窗或 Dashboard 一点打开，页面到达后再注入。代码留空则只打开网址 — 无需站点访问权限。</p> <div class="rj-hero-actions"> <a class="rj-primary" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> 立即安装 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <a class="rj-secondary" href="#features"> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.7"></path> <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"></circle> </svg> 查看功能 </a> </div> <div class="rj-works" aria-label="能力概览"> <span>适用于</span> <div class="rj-works-row"> <strong><span class="rj-chip rj-chip-css">CSS</span>样式注入</strong> <strong><span class="rj-chip rj-chip-js">JS</span>脚本注入</strong> <strong><span class="rj-chip rj-chip-url">URL</span>网址绑定</strong> <strong><span class="rj-chip rj-chip-mv3">MV3</span>Manifest V3</strong> <strong><span class="rj-chip rj-chip-auto">AUTO</span>自动注入</strong> </div> </div> </div> <div class="rj-stage" data-hero-stage aria-label="产品预览"> <div class="rj-orbit" aria-hidden="true"> <span class="oc-1">.css</span> <span class="oc-2">.js</span> <span class="oc-3">inject</span> <span class="oc-4">auto</span> <span class="oc-5">match</span> <span class="oc-6">drive</span> <span class="oc-7">popup</span> </div> <div class="rj-shell" data-tilt> <div class="rj-shell-top"> <div class="rj-traffic" aria-hidden="true"><i></i><i></i><i></i></div> <div class="rj-address"> <img src="/assets/products/runjs/runjs-icon128.png" width="13" height="13" alt=""> <span class="rj-address-path">runjs/</span> <span class="rj-address-file" data-stage-file>script.css</span> </div> <div class="rj-shell-tools" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3-3" stroke-linecap="round"></path></svg> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 5v2M12 17v2M5 12h2M17 12h2" stroke-linecap="round"></path></svg> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v10M8 10l4 4 4-4M6 18h12" stroke-linecap="round" stroke-linejoin="round"></path></svg> </div> </div> <div class="rj-shell-body"> <aside class="rj-rail" aria-label="预览场景"> <button type="button" class="is-active" data-scene="css" data-file="script.css">CSS</button> <button type="button" data-scene="js" data-file="inject.js">JS</button> <button type="button" data-scene="url" data-file="match.url">URL</button> <button type="button" data-scene="auto" data-file="auto.js">AUTO</button> <button type="button" data-scene="sync" data-file="drive.sync">SYNC</button> </aside> <div class="rj-scene-stack" aria-hidden="true"> <div class="rj-scene rj-scene-css is-active" data-scene="css"> <div class="rj-paper"> <span class="rj-paper-title"></span> <span class="rj-paper-line w-90"></span> <span class="rj-paper-line w-75"></span> <span class="rj-paper-line w-85 is-hit"></span> <span class="rj-paper-line w-60"></span> <span class="rj-paper-block"></span> <span class="rj-paper-line w-80"></span> <span class="rj-paper-line w-50"></span> </div> </div> <div class="rj-scene rj-scene-js" data-scene="js"> <div class="rj-codepane"> <div class="rj-codepane-line"><span class="k">function</span> <span class="f">openAndInject</span>(opts) {</div> <div class="rj-codepane-line"> <span class="k">const</span> { url, css, js } = opts;</div> <div class="rj-codepane-line"> <span class="f">await</span> <span class="f">tabs.create</span>({ url });</div> <div class="rj-codepane-line"> <span class="f">inject</span>(css, js);</div> <div class="rj-codepane-line">}</div> </div> </div> <div class="rj-scene rj-scene-url" data-scene="url"> <div class="rj-sheet"> <span></span><span></span><span></span><span></span> <span></span><span class="cell-hot"></span><span></span><span></span> <span></span><span></span><span class="cell-hot"></span><span></span> <span></span><span></span><span></span><span></span> <span class="cell-hot"></span><span></span><span></span><span></span> <span></span><span></span><span></span><span class="cell-hot"></span> </div> <div class="rj-sheet-selection"></div> </div> <div class="rj-scene rj-scene-auto" data-scene="auto"> <div class="rj-eq" aria-hidden="true"> <span></span><span></span><span></span><span></span><span></span><span></span> <span></span><span></span><span></span><span></span><span></span><span></span> </div> </div> <div class="rj-scene rj-scene-sync" data-scene="sync"> <div class="rj-tree"> <span class="rj-tree-row is-dir">local/</span> <span class="rj-tree-row indent">library.json</span> <span class="rj-tree-row indent">prefs.json</span> <span class="rj-tree-row is-dir">drive/</span> <span class="rj-tree-row indent">scripts.json</span> <span class="rj-tree-row indent">last-sync</span> </div> </div> <div class="rj-scan-beam" aria-hidden="true"></div> </div> </div> </div> </div> </div> <div class="rj-marquee" aria-label="能力标签" role="presentation"> <div class="rj-marquee-track"> <div class="rj-marquee-group"> <span>css</span><span>js</span><span>inject</span><span>auto</span><span>match</span><span>all-sites</span><span>monaco</span><span>popup</span><span>dashboard</span><span>drive</span><span>local</span><span>spa</span><span>iframe</span><span>persist</span><span>mv3</span><span>user-scripts</span> </div> <div class="rj-marquee-group" aria-hidden="true"> <span>css</span><span>js</span><span>inject</span><span>auto</span><span>match</span><span>all-sites</span><span>monaco</span><span>popup</span><span>dashboard</span><span>drive</span><span>local</span><span>spa</span><span>iframe</span><span>persist</span><span>mv3</span><span>user-scripts</span> </div> </div> </div> </section> <section class="rj-stats-band" aria-label="要点"> <div class="rj-stats"> <div class="rj-stat"> <strong>本地</strong> <span>默认只存本机</span> </div> <div class="rj-stat"> <strong>135+</strong> <span>Chrome 版本要求</span> </div> <div class="rj-stat"> <strong>Drive</strong> <span>可选云同步</span> </div> <div class="rj-stat"> <strong>免费</strong> <span>无广告 · 无追踪</span> </div> </div> </section> <section class="rj-section" id="how"> <div class="rj-section-heading"> <p>两种用法</p> <h2>一点打开并注入，或只当网址快捷方式</h2> <p class="rj-lede">在 Dashboard 保存名称、目标网址与可选的 CSS/JS。默认本地优先；需要时再开 Google Drive 同步。</p> </div> <div class="rj-way-grid"> <article class="rj-glow-card"> <span class="rj-card-tag"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg> 即开即用 </span> <h3>打开并注入</h3> <p>点击已保存条目即可打开网址并在加载后注入。CSS/JS 为空则仅打开。</p> <div class="rj-editor"> <div class="rj-editor-bar"> <i></i><i></i><i></i> <strong>terminal</strong> </div> <pre><span class="prompt">$</span> <span class="em">runjs open</span> example.com
+<span class="prompt">→</span> 加载后注入</pre> </div> </article> <article class="rj-glow-card"> <span class="rj-card-tag"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M4 7h16v10H4V7Zm4 10V7m8 10V7" stroke="currentColor" stroke-width="1.7"></path> </svg> 本地优先 </span> <h3>本地优先</h3> <p>脚本、偏好与草稿保存在本机；也可选同步到你的 Google Drive 应用数据区。</p> <div class="rj-editor"> <div class="rj-editor-bar"> <i></i><i></i><i></i> <strong>storage.json</strong> </div> <pre><span class="em">local</span>: scripts + prefs
+drive: 可选 appData
+ads: <span class="em">false</span></pre> </div> </article> </div> </section> <section class="rj-section" id="highlights" data-reveal> <div class="rj-section-heading"> <p>核心亮点</p> <h2>适配真实页面</h2> <p class="rj-lede">跟随跳转，支持 SPA 与 iframe，注入时机可配置。</p> </div> <div class="rj-feature-grid"> <article class="rj-feature"> <div class="rj-feature-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"> <path d="M4 7h16M4 12h10M4 17h13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path> </svg> </div> <h3>注入范围可控</h3> <p>指定网址或所有站点；匹配模式、自动注入，以及按脚本启用/禁用。</p> </article> <article class="rj-feature"> <div class="rj-feature-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"> <rect x="4" y="5" width="16" height="14" rx="2.5" stroke="currentColor" stroke-width="1.8"></rect> <path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path> </svg> </div> <h3>Monaco 编辑器</h3> <p>Dashboard 内补全、悬停与 Less/Sass；主题与字体跟扩展设置同步。</p> </article> <article class="rj-feature"> <div class="rj-feature-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none"> <path d="M12 3l7 3v5c0 4.2-2.8 7.8-7 9-4.2-1.2-7-4.8-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path> </svg> </div> <h3>权限克制</h3> <p>有注入代码才申请站点访问；拒绝仍可本地保存。Chrome 138+ 还需开启「允许运行用户脚本」。</p> </article> </div> </section> <section class="rj-section" id="features" data-reveal> <div class="rj-section-heading"> <p>功能</p> <h2>你能做什么</h2> </div> <div class="rj-feat-grid"> <article class="rj-feat-card"> <strong>Dashboard</strong> <p>脚本库含基本 / CSS / JS / 设置 / 权限，Monaco 编辑器、格式化、网址测试与草稿恢复。</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>弹窗</strong> <p>搜索与筛选；点击打开并注入，或在代码为空时仅打开。</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>注入</strong> <p>主机 + 路径前缀或 Chrome 匹配模式；隔离环境或页面主环境；开始 / DOM 就绪 / 加载完成 / 空闲 / 延迟；刷新后可保持。</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>脚本库工具</strong> <p>导入/导出 JSON、批量删除、拖拽排序、导入冲突处理。</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>可选 Google Drive 同步</strong> <p>设置 → 存储；按脚本合并，删除与列表顺序也会同步。</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article><article class="rj-feat-card"> <strong>网页右键</strong> <p>在任意页面右键即可打开并注入；跟随跳转，适合日常一键工作流。</p> <span class="rj-card-arrow" aria-hidden="true">→</span> </article> </div> </section> <section class="rj-section" id="workflow" data-reveal> <div class="rj-split-heading"> <div> <p>快速上手</p> <h2>几分钟进入工作流</h2> </div> <p>站点库、本地 / Drive、右键注入、编辑器与运行时机 — 五步看清核心能力。</p> </div> <div class="rj-showcase" data-ss-showcase> <aside class="rj-ss-tabs" role="tablist" aria-label="快速上手"> <strong>目录</strong> <button type="button" class="rj-ss-tab on" data-ss-tab="0" role="tab" aria-selected="true"> 站点库 </button><button type="button" class="rj-ss-tab" data-ss-tab="1" role="tab"> Drive 同步 </button><button type="button" class="rj-ss-tab" data-ss-tab="2" role="tab"> 打开并注入 </button><button type="button" class="rj-ss-tab" data-ss-tab="3" role="tab"> 编辑与保存 </button><button type="button" class="rj-ss-tab" data-ss-tab="4" role="tab"> 时机与环境 </button> </aside> <div class="rj-ss-stage"> <section class="rj-ss-slide on" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1">每个站点，一个库</h3> <div class="rj-ss-sub">脚本按 URL 分组
+筛选、编辑、运行 — 本地与 Google Drive</div> <div class="rj-ss-pills"> <span class="rj-ss-pill">脚本</span> <span class="rj-ss-pill">按 URL</span> </div> </div> <div class="rj-ss-card"> <div class="rj-ss-g"> <div class="rj-ss-search"> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"> <circle cx="10.5" cy="10.5" r="7"></circle> <path d="M16 16l5 5"></path> </svg> 按名称或网址筛选 </div> <div class="rj-ss-row"> <div class="rj-ss-fav rj-ss-fav-g">G</div> <div> <div class="rj-ss-sname">Google</div> <div class="rj-ss-surl">https://www.google.com</div> </div> <div class="rj-ss-edit" aria-hidden="true">✎</div> </div> <div class="rj-ss-row"> <div class="rj-ss-fav rj-ss-fav-ig">◎</div> <div> <div class="rj-ss-sname">Instagram</div> <div class="rj-ss-surl">https://www.instagram.com</div> </div> <div class="rj-ss-edit" aria-hidden="true">✎</div> </div> <div class="rj-ss-row"> <div class="rj-ss-fav rj-ss-fav-x">𝕏</div> <div> <div class="rj-ss-sname">X</div> <div class="rj-ss-surl">https://x.com</div> </div> <div class="rj-ss-edit" aria-hidden="true">✎</div> </div> <div class="rj-ss-row"> <div class="rj-ss-fav rj-ss-fav-all">▣</div> <div> <div class="rj-ss-sname">全站注入</div> <div class="rj-ss-surl">所有站点</div> </div> <div class="rj-ss-edit" aria-hidden="true">✎</div> </div> </div> </div> </section> <section class="rj-ss-slide" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1">本地优先隐私</h3> <div class="rj-ss-sub">默认浏览器本地存储
+需要时再开启 Google Drive 同步</div> <div class="rj-ss-pills"> <span class="rj-ss-pill">无广告</span> <span class="rj-ss-pill">无追踪</span> <span class="rj-ss-pill">导入 / 导出</span> </div> </div> <div class="rj-ss-card"> <div class="rj-ss-g"> <div class="rj-ss-ctitle">存储</div> <div class="rj-ss-csub">本地脚本库用量与可选的 Google Drive 同步。</div> <div class="rj-ss-heading">存储提供方</div> <div class="rj-ss-opt"> <span class="rj-ss-opt-icon" aria-hidden="true">▣</span> <div> <div class="rj-ss-opt-name">浏览器存储</div> <div class="rj-ss-surl">本机 Chrome 本地存储（默认）</div> </div> </div> <div class="rj-ss-opt sel"> <span class="rj-ss-opt-icon" aria-hidden="true">↻</span> <div> <div class="rj-ss-opt-name">Google Drive</div> <div class="rj-ss-surl">跨设备通过 Google Drive 同步脚本</div> </div> </div> <div class="rj-ss-ostat"> <span><span class="rj-ss-dot"></span><b>已同步</b></span> <span class="rj-ss-meta">上次同步：2026/10/16 23:42:28</span> </div> <div class="rj-ss-metric"><span>脚本</span><b>4</b></div> <div class="rj-ss-metric"><span>库代码大小</span><b>6.7 KB</b></div> <div class="rj-ss-metric"><span>本地存储</span><b>14.5 KB / 10.00 MB</b></div> </div> </div> </section> <section class="rj-ss-slide wide" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1">打开并注入</h3> <div class="rj-ss-sub">在任意页面右键
+从菜单直接运行脚本</div> <div class="rj-ss-pills"> <span class="rj-ss-pill solid">一键</span> <span class="rj-ss-pill">跟随跳转</span> </div> </div> <div class="rj-ss-card rj-ss-card-center"> <div class="rj-ss-menupic"> <img src="/assets/products/runjs/runjs-context-menu.jpg" alt="RunJS 右键菜单示意" width="420" height="540" loading="lazy"> </div> </div> </section> <section class="rj-ss-slide" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1">CSS + JS 编辑器</h3> <div class="rj-ss-sub">语法高亮编辑
+保存后与脚本库保持同步</div> <div class="rj-ss-pills"> <span class="rj-ss-pill">导入 / 导出</span> <span class="rj-ss-pill">格式化</span> </div> </div> <div class="rj-ss-card"> <div class="rj-ss-g"> <div class="rj-ss-status"> <span class="rj-ss-st1">编辑</span> <span class="rj-ss-st2"><i class="rj-ss-gdot"></i>已保存 — 与库一致</span> </div> <div class="rj-ss-toolrow"> <span class="rj-ss-chip">导入</span> <span class="rj-ss-chip">导出</span> <span class="rj-ss-chip">格式化</span> </div> <div class="rj-ss-code"> <div class="rj-ss-cl"><span class="rj-ss-ln">1</span><span class="rj-ss-tx"><span class="rj-ss-k">function</span> (global, undefined) {</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">2</span><span class="rj-ss-tx"> <span class="rj-ss-str">"use strict"</span>;</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">3</span><span class="rj-ss-tx"> undefinedVariable = {};</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">6</span><span class="rj-ss-tx"> <span class="rj-ss-k">function</span> <span class="rj-ss-fn">initializeProperties</span>(target, members) {</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">7</span><span class="rj-ss-tx"> <span class="rj-ss-k">var</span> keys = <span class="rj-ss-fn">Object.keys</span>(members);</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">8</span><span class="rj-ss-tx"> <span class="rj-ss-k">var</span> properties;</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">10</span><span class="rj-ss-tx"> <span class="rj-ss-k">for</span> (i = <span class="rj-ss-num">0</span>, len = keys.length; i &lt; len; i++) {</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">11</span><span class="rj-ss-tx"> <span class="rj-ss-k">var</span> key = keys[i];</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">12</span><span class="rj-ss-tx"> <span class="rj-ss-k">var</span> enumerable = key.<span class="rj-ss-fn">charCodeAt</span>(<span class="rj-ss-num">0</span>) !== <span class="rj-ss-num">95</span>;</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">15</span><span class="rj-ss-tx"> <span class="rj-ss-k">if</span> (member.value !== <span class="rj-ss-k">undefined</span> ||</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">19</span><span class="rj-ss-tx"> properties = properties || {};</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">26</span><span class="rj-ss-tx"> properties[key] = { value: member, <span class="rj-ss-k">writable</span>: <span class="rj-ss-k">true</span> }</span></div> <div class="rj-ss-cl"><span class="rj-ss-ln">27</span><span class="rj-ss-tx"> }</span></div> </div> <div class="rj-ss-btns"> <button type="button" class="rj-ss-btn" tabindex="-1">还原</button> <button type="button" class="rj-ss-btn solid" tabindex="-1">保存更改</button> </div> </div> </div> </section> <section class="rj-ss-slide" data-ss-slide> <div class="rj-ss-left"> <div class="rj-ss-brandrow"> <div class="rj-ss-js" aria-hidden="true">JS</div> <div class="rj-ss-name">RunJS</div> </div> <h3 class="rj-ss-h1 bp">时机与环境</h3> <div class="rj-ss-sub">选择代码何时运行
+以及在何处执行</div> <div class="rj-ss-pills"> <span class="rj-ss-pill solid">隔离环境</span> <span class="rj-ss-pill">页面主世界</span> </div> </div> <div class="rj-ss-card"> <div class="rj-ss-g"> <div class="rj-ss-sec">运行</div> <div class="rj-ss-frow"><span>执行环境</span><span class="rj-ss-sel">隔离环境 ▾</span></div> <div class="rj-ss-frow"><span>运行时机</span><span class="rj-ss-sel">DOM 就绪后 ▾</span></div> <div class="rj-ss-frow"><span>延迟运行</span><span class="rj-ss-inp">1000</span></div> <div class="rj-ss-frow"><span>在 iframe 中运行</span><span class="rj-ss-tog on"></span></div> <div class="rj-ss-sec">页面注入</div> <div class="rj-ss-frow"><span>自动注入</span><span class="rj-ss-tog on"></span></div> <div class="rj-ss-frow"><span>持久脚本</span><span class="rj-ss-tog on"></span></div> <div class="rj-ss-frow"><span>注入次数</span><span class="rj-ss-inp">1</span></div> <div class="rj-ss-sec">脚本设置</div> <div class="rj-ss-frow"><span>启用脚本</span><span class="rj-ss-tog on"></span></div> </div> </div> </section> </div> </div> </section> <section class="rj-section" id="matrix" data-reveal> <div class="rj-section-heading"> <p>能力矩阵</p> <h2>为真实浏览流程而建</h2> </div> <div class="rj-format-grid"> <article data-reveal data-reveal-delay="1"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><path class="fill" d="M7 6h14v20H7V6Z"></path><path class="mark" d="M13 14l5 3.5-5 3.5V14Z"></path></svg> </div> <h3>打开与注入</h3> <p>一点运行</p> <div class="rj-tag-list"> <span>打开</span><span>注入</span><span>跳转</span><span>SPA</span> </div> </article><article data-reveal data-reveal-delay="2"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><path class="fill" d="M8 4h11l5 5v19H8V4Z"></path><path class="mark" d="M12 15h9M12 19h7M12 23h8"></path></svg> </div> <h3>编辑器</h3> <p>Dashboard Monaco</p> <div class="rj-tag-list"> <span>CSS</span><span>JS</span><span>Less</span><span>Sass</span><span>格式化</span> </div> </article><article data-reveal data-reveal-delay="3"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><circle class="fill" cx="16" cy="16" r="10"></circle><circle class="mark" cx="16" cy="16" r="3.5"></circle><path class="mark" d="M16 6v3M16 23v3M6 16h3M23 16h3"></path></svg> </div> <h3>注入范围</h3> <p>精准或全站</p> <div class="rj-tag-list"> <span>网址</span><span>匹配</span><span>全站</span><span>iframe</span> </div> </article><article data-reveal data-reveal-delay="1"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><circle class="fill" cx="16" cy="16" r="10"></circle><path class="mark" d="M16 10v6.5l4 2.2"></path></svg> </div> <h3>时机控制</h3> <p>何时执行</p> <div class="rj-tag-list"> <span>开始</span><span>DOM就绪</span><span>加载</span><span>空闲</span><span>延迟</span> </div> </article><article data-reveal data-reveal-delay="2"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><path class="mark" d="M9 14a7 7 0 0 1 12-3.5L23 13M23 18a7 7 0 0 1-12 3.5L9 19"></path><path class="mark" d="M21 7v5h-5M11 25v-5h5"></path></svg> </div> <h3>同步与备份</h3> <p>可选云端</p> <div class="rj-tag-list"> <span>本地</span><span>Drive</span><span>导入</span><span>导出</span> </div> </article><article data-reveal data-reveal-delay="3"> <div class="rj-format-icon" aria-hidden="true"> <svg viewBox="0 0 32 32"><path class="fill" d="M10 14h12v12H10V14Z"></path><path class="mark" d="M12.5 14V11a3.5 3.5 0 0 1 7 0v3"></path></svg> </div> <h3>权限与安全</h3> <p>按需授权</p> <div class="rj-tag-list"> <span>主机</span><span>用户脚本</span><span>启用</span><span>禁用</span> </div> </article> </div> </section> <section class="rj-section" id="requirements" data-reveal> <div class="rj-section-heading"> <p>运行要求</p> <h2>Chrome 135+</h2> </div> <div class="rj-req"> <p> 最低要求 Chrome 135+。在 Chrome 138+ 上注入已保存脚本时，请打开  <code>chrome://extensions</code>  → RunJS 详情 → 开启「允许运行用户脚本」。仅在你保存了注入代码的来源站点上才会申请站点访问权限。 </p> </div> </section> <section class="rj-cta-band"> <div class="rj-cta-inner"> <h2>不必改网站源码，也能重塑你每天打开的页面</h2> <p class="rj-lede">本地优先保存脚本；需要时再开 Drive 同步。从 Chrome 网上应用店安装即可开始。</p> <div class="rj-cta-actions"> <a class="rj-primary" href="https://chromewebstore.google.com/detail/runjs/ojnklfecniapdcbficadmjdljogefooe" rel="noopener noreferrer" target="_blank"> 立即安装 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <a class="rj-secondary" href="/zh/runjs/privacy/">隐私政策</a>  </div> </div> </section> </main> <footer class="rj-footer"> <div class="rj-footer-inner"> <div class="rj-footer-brand"> <div class="rj-footer-brand-row"> <img src="/assets/products/runjs/runjs-icon128.png" width="31" height="31" alt=""> <strong>RunJS</strong> </div> <p>用自己的 CSS 与 JS 重新定义任意网站 — 本地优先，无广告无追踪。</p> </div> <nav class="rj-footer-links" aria-label="页脚"> <a href="/zh/">全部扩展</a> <a href="#features">功能</a> <a href="/zh/runjs/privacy/">隐私</a> <a href="/zh/runjs/terms/">条款</a> <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> </nav> </div> <div class="rj-footer-bottom"> <span>扩展 · Chrome 扩展</span> <span>© 2026 · RunJS</span> </div> </footer> <script>
+    (function () {
+      var root = document.body;
+      var docEl = document.documentElement;
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce) root.setAttribute("data-motion", "on");
+
+      var progress = document.getElementById("rjScrollProgress");
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".rj-nav-links a[href^=\"#\"]"));
+      var sectionIds = navLinks
+        .map(function (a) {
+          return a.getAttribute("href");
+        })
+        .filter(Boolean);
+      var ticking = false;
+
+      function setProgress() {
+        if (!progress) return;
+        var max = docEl.scrollHeight - window.innerHeight;
+        var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        progress.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      }
+
+      function setNavScrolled() {
+        root.setAttribute("data-nav-scrolled", window.scrollY > 36 ? "1" : "0");
+      }
+
+      function setActiveNav() {
+        if (!navLinks.length) return;
+        var marker = window.scrollY + Math.max(180, Math.min(240, window.innerHeight * 0.32));
+        var current = "";
+        sectionIds.forEach(function (hash) {
+          var el = document.querySelector(hash);
+          if (!el) return;
+          var top = el.getBoundingClientRect().top + window.scrollY;
+          if (top <= marker) current = hash;
+        });
+        navLinks.forEach(function (a) {
+          a.classList.toggle("active", a.getAttribute("href") === current);
+        });
+      }
+
+      function onScrollFrame() {
+        ticking = false;
+        setProgress();
+        setNavScrolled();
+        setActiveNav();
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(onScrollFrame);
+      }
+
+      onScrollFrame();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll, { passive: true });
+
+      function scrollToHash(behavior) {
+        if (!location.hash || location.hash.length <= 1) return;
+        var hashEl = document.querySelector(location.hash);
+        if (!hashEl) return;
+        var headerH = parseFloat(getComputedStyle(root).getPropertyValue("--header-height")) || 68;
+        var hashTop = hashEl.getBoundingClientRect().top + window.scrollY - headerH - 18;
+        window.scrollTo({ top: Math.max(0, hashTop), behavior: behavior || "auto" });
+        onScrollFrame();
+      }
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          scrollToHash("auto");
+          setTimeout(function () {
+            scrollToHash("auto");
+          }, 120);
+        });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          var hash = a.getAttribute("href");
+          if (!hash || hash === "#") return;
+          var target = document.querySelector(hash);
+          if (!target) return;
+          e.preventDefault();
+          var top =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            (parseFloat(getComputedStyle(root).getPropertyValue("--header-height")) || 68) -
+            18;
+          window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+          if (history.replaceState) history.replaceState(null, "", hash);
+          else location.hash = hash;
+          navLinks.forEach(function (link) {
+            link.classList.toggle("active", link.getAttribute("href") === hash);
+          });
+        });
+      });
+
+      document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          try {
+            localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+          } catch (err) {}
+          var hash = location.hash || "";
+          if (!hash) return;
+          e.preventDefault();
+          var href = el.getAttribute("href") || "";
+          location.href = href.split("#")[0] + hash;
+        });
+      });
+
+      function bindTilt(el, max) {
+        if (reduce || !el) return;
+        var strength = max || 6;
+        el.addEventListener("pointermove", function (e) {
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - 0.5;
+          var py = (e.clientY - r.top) / r.height - 0.5;
+          el.style.setProperty("--tilt-x", (-py * strength).toFixed(2) + "deg");
+          el.style.setProperty("--tilt-y", (px * strength).toFixed(2) + "deg");
+          el.style.setProperty("--mx", e.clientX - r.left + "px");
+          el.style.setProperty("--my", e.clientY - r.top + "px");
+        });
+        el.addEventListener("pointerleave", function () {
+          el.style.setProperty("--tilt-x", "0deg");
+          el.style.setProperty("--tilt-y", "0deg");
+        });
+      }
+
+      document.querySelectorAll(".rj-glow-card").forEach(function (card) {
+        bindTilt(card, 5);
+      });
+      bindTilt(document.querySelector(".rj-shell[data-tilt]"), 4);
+
+      var stage = document.querySelector("[data-hero-stage]");
+      if (stage) {
+        var rail = stage.querySelector(".rj-rail");
+        var fileEl = stage.querySelector("[data-stage-file]");
+        var scenes = stage.querySelectorAll(".rj-scene[data-scene]");
+        function activateScene(id, file) {
+          if (rail) {
+            rail.querySelectorAll("button[data-scene]").forEach(function (b) {
+              b.classList.toggle("is-active", b.getAttribute("data-scene") === id);
+            });
+          }
+          scenes.forEach(function (scene) {
+            scene.classList.toggle("is-active", scene.getAttribute("data-scene") === id);
+          });
+          if (fileEl && file) fileEl.textContent = file;
+          stage.classList.remove("is-scanning");
+          void stage.offsetWidth;
+          stage.classList.add("is-scanning");
+        }
+        if (rail) {
+          rail.querySelectorAll("button[data-scene]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              activateScene(btn.getAttribute("data-scene"), btn.getAttribute("data-file"));
+            });
+          });
+        }
+        stage.classList.add("is-scanning");
+      }
+
+      var showcase = document.querySelector("[data-ss-showcase]");
+      if (showcase) {
+        var ssTabs = showcase.querySelectorAll("[data-ss-tab]");
+        var ssSlides = showcase.querySelectorAll("[data-ss-slide]");
+        ssTabs.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var i = +btn.getAttribute("data-ss-tab");
+            ssTabs.forEach(function (b, idx) {
+              b.classList.toggle("on", idx === i);
+              b.setAttribute("aria-selected", idx === i ? "true" : "false");
+            });
+            ssSlides.forEach(function (slide, idx) {
+              slide.classList.toggle("on", idx === i);
+            });
+          });
+        });
+      }
+
+      var nodes = document.querySelectorAll("[data-reveal]");
+      if (reduce || !("IntersectionObserver" in window)) {
+        nodes.forEach(function (n) {
+          n.classList.add("is-revealed");
+        });
+      } else {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-revealed");
+              io.unobserve(entry.target);
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+        );
+        nodes.forEach(function (n) {
+          io.observe(n);
+        });
+      }
+    })();
+  </script>  </body></html>

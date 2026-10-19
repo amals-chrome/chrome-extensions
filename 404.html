@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="This page does not exist on the Chrome Extensions site."><meta name="google-site-verification" content="qglDXwd5WsR262u3-31LoP47II7P1hhxSIAEebaW-9A"><link rel="canonical" href="https://amals-chrome.com/404/"><meta property="og:type" content="website"><meta property="og:site_name" content="Chrome Extensions"><meta property="og:title" content="Page not found · Chrome Extensions"><meta property="og:description" content="This page does not exist on the Chrome Extensions site."><meta property="og:url" content="https://amals-chrome.com/404/"><meta property="og:image" content="https://amals-chrome.com/assets/og-default.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Page not found · Chrome Extensions"><meta name="twitter:description" content="This page does not exist on the Chrome Extensions site."><meta name="twitter:image" content="https://amals-chrome.com/assets/og-default.jpg"><title>Page not found · Chrome Extensions</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/site-icon.png" type="image/png" sizes="1024x1024"><link rel="apple-touch-icon" href="/assets/site-icon-180.png"><script>
+  (function () {
+    try {
+      var KEY = "amals-site-locale";
+      var stored = localStorage.getItem(KEY);
+      var path = location.pathname || "/";
+      var onZh = path === "/zh" || path === "/zh/" || path.indexOf("/zh/") === 0;
+
+      function preferZh() {
+        var langs = [];
+        if (navigator.languages && navigator.languages.length) {
+          langs = langs.concat(Array.prototype.slice.call(navigator.languages));
+        }
+        if (navigator.language) langs.push(navigator.language);
+        for (var i = 0; i < langs.length; i++) {
+          var x = String(langs[i] || "").toLowerCase();
+          if (x.indexOf("zh") === 0) return true;
+          if (x.indexOf("en") === 0) return false;
+        }
+        return false;
+      }
+
+      function toZh(p) {
+        if (p === "/" || p === "") return "/zh/";
+        if (p.indexOf("/zh") === 0) return p.endsWith("/") ? p : p + "/";
+        return "/zh" + (p.endsWith("/") ? p : p + "/");
+      }
+
+      function toEn(p) {
+        if (p === "/zh" || p === "/zh/") return "/";
+        if (p.indexOf("/zh/") === 0) {
+          var rest = p.slice(3);
+          return rest.endsWith("/") ? rest : rest + "/";
+        }
+        return p.endsWith("/") ? p : p + "/";
+      }
+
+      var suffix = (location.search || "") + (location.hash || "");
+      var wantZh = stored === "zh" ? true : stored === "en" ? false : preferZh();
+      if (wantZh && !onZh) {
+        location.replace(toZh(path) + suffix);
+        return;
+      }
+      if (!wantZh && onZh && stored === "en") {
+        location.replace(toEn(path) + suffix);
+      }
+    } catch (e) {}
+  })();
+</script><link rel="stylesheet" href="/_astro/index.CHZZLzla.css"></head> <body class="site-body" data-nav-scrolled="0"> <div class="bg-glow" aria-hidden="true"></div> <header class="nav"> <a class="brand" href="/" aria-label="Chrome Extensions home"> <img class="brand-mark" src="/assets/site-icon.png" width="31" height="31" alt=""> </a> <nav class="nav-links" aria-label="Primary"> <a class="nav-link" href="/">Home</a> <div class="nav-dropdown"> <a class="nav-link nav-dropdown-trigger" href="/#extensions" aria-haspopup="true"> <span>Extensions</span> <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true" focusable="false"> <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <div class="nav-dropdown-menu" role="menu"> <a class="nav-dropdown-item" role="menuitem" href="/runjs/"> RunJS </a> </div> </div> <a class="nav-link" href="/#about">About</a>  </nav> <div class="nav-actions"> <a class="nav-lang" href="/zh/404/" lang="zh-CN" data-locale-switch="zh" aria-label="Language"> 中文 </a> </div> </header> <script>
+  (function () {
+    var root = document.body;
+    if (!root || !root.classList.contains("site-body")) return;
+    function setNavScrolled() {
+      root.setAttribute("data-nav-scrolled", window.scrollY > 36 ? "1" : "0");
+    }
+    setNavScrolled();
+    window.addEventListener("scroll", setNavScrolled, { passive: true });
+
+    document.querySelectorAll("[data-locale-switch]").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        try {
+          localStorage.setItem("amals-site-locale", el.getAttribute("data-locale-switch") || "");
+        } catch (err) {}
+        var hash = location.hash || "";
+        if (!hash) return;
+        e.preventDefault();
+        var href = el.getAttribute("href") || "";
+        location.href = href.split("#")[0] + hash;
+      });
+    });
+  })();
+</script>  <main class="not-found" id="top"> <div class="wrap not-found-inner"> <section class="not-found-hero" aria-labelledby="not-found-title"> <p class="not-found-code" aria-hidden="true">404</p> <h1 id="not-found-title">Page not found</h1> <p class="not-found-lead">This URL isn’t on the site. Check the address or go back to the home page.</p> <div class="hero-actions"> <a class="btn btn-primary btn-lg" href="/">Back to home</a> </div> </section> </div> </main>  <footer class="site-footer"> <div class="wrap site-footer-inner"> <div class="site-footer-brand"> <div class="site-footer-brand-row"> <img class="brand-mark" src="/assets/site-icon.png" width="31" height="31" alt=""> <strong>Chrome Extensions</strong> </div> <p>Indie Chrome extensions — privacy-first, no ads, no tracking.</p> </div> <nav class="site-footer-links" aria-label="Footer"> <a href="/">Home</a> <a href="/#extensions">Extensions</a> <a href="/runjs/privacy/">RunJS · Privacy</a><a href="/runjs/terms/">RunJS · Terms</a>  <a href="mailto:amals.chrome@gmail.com">amals.chrome@gmail.com</a> </nav> </div> <div class="wrap site-footer-bottom"> <span>Official extension catalog</span> <span>© 2026 · Chrome Extensions</span> </div> </footer> </body></html>
